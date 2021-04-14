@@ -1,9 +1,13 @@
 const express = require('express')
+const path = require('path')
 // const bodyParser = require('body-parser')
 // const cookieParser = require('cookie-parser')
-
 const app = express()
-const server = require('http').Server(app)
+
+const PORT = process.env.PORT || 4000
+
+const buildPath = path.join(__dirname, '..', 'build')
+app.use(express.static(buildPath))
 
 // const models = require('./models')
 
@@ -14,8 +18,10 @@ const server = require('http').Server(app)
 // app.use('/user', userRouter)
 // app.use('/chat', chatRouter)
 
-app.get('/', (req, res) => {
-  res.send('E-Commerce Server Page')
+app.get('/api', (req, res) => {
+  res.send('E-Commerce Server API Page')
 })
 
-server.listen(process.env.PORT || 4000)
+app.listen(PORT, () => {
+  console.log(`server started on port ${PORT}`)
+})
