@@ -12,14 +12,20 @@ class LoginModal extends React.Component {
   }
 
   render() {
-    const { showLoginModal, setState, login } = this.props
+    const { isLoginModalVisible, setState, login } = this.props
     return (
       <Modal
         title='Login'
-        visible={showLoginModal}
-        onCancel={() => setState({ showLoginModal: false })}
+        visible={isLoginModalVisible}
+        onCancel={() => setState({ isLoginModalVisible: false })}
         footer={[
-          <Button key='register' type='primary' onClick={() => login(this.state)}>
+          <Button
+            key='register'
+            onClick={() => setState({ isRegisterModalVisible: true, isLoginModalVisible: false })}
+          >
+            Register
+          </Button>,
+          <Button key='login' type='primary' onClick={() => login(this.state)}>
             Submit
           </Button>,
         ]}
@@ -37,7 +43,7 @@ class LoginModal extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  showLoginModal: state.showLoginModal,
+  isLoginModalVisible: state.isLoginModalVisible,
 })
 
 export default connect(mapStateToProps, { setState, login })(LoginModal)

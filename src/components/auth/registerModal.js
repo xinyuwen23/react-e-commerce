@@ -15,13 +15,19 @@ class RegisterModal extends React.Component {
   }
 
   render() {
-    const { showRegisterModal, setState, register } = this.props
+    const { isRegisterModalVisible, setState, register } = this.props
     return (
       <Modal
         title='Register'
-        visible={showRegisterModal}
-        onCancel={() => setState({ showRegisterModal: false })}
+        visible={isRegisterModalVisible}
+        onCancel={() => setState({ isRegisterModalVisible: false })}
         footer={[
+          <Button
+            key='login'
+            onClick={() => setState({ isRegisterModalVisible: false, isLoginModalVisible: true })}
+          >
+            Login
+          </Button>,
           <Button key='register' type='primary' onClick={() => register(this.state)}>
             Submit
           </Button>,
@@ -48,7 +54,7 @@ class RegisterModal extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  showRegisterModal: state.showRegisterModal,
+  isRegisterModalVisible: state.isRegisterModalVisible,
 })
 
 export default connect(mapStateToProps, { setState, register })(RegisterModal)

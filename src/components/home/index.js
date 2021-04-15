@@ -10,8 +10,8 @@ class Home extends React.Component {
     return (
       <div>
         <div>Home Page</div>
-        <Button onClick={() => setState({ showRegisterModal: true })}>Register</Button>
-        <Button onClick={() => setState({ showLoginModal: true })}>Login</Button>
+        <Button onClick={() => setState({ isRegisterModalVisible: true })}>Register</Button>
+        <Button onClick={() => setState({ isLoginModalVisible: true })}>Login</Button>
       </div>
     )
   }
