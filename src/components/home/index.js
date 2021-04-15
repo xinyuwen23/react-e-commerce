@@ -1,17 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Button } from 'antd'
+import { Space, Button } from 'antd'
 
-import { setState } from '../../actions'
+import { setState, test } from '../../actions'
 
 class Home extends React.Component {
   render() {
-    const { setState } = this.props
+    const { setState, test } = this.props
     return (
       <div>
         <div>Home Page</div>
-        <Button onClick={() => setState({ isRegisterModalVisible: true })}>Register</Button>
-        <Button onClick={() => setState({ isLoginModalVisible: true })}>Login</Button>
+        <Space>
+          <Button onClick={() => setState({ isRegisterModalVisible: true })}>Register</Button>
+          <Button onClick={() => setState({ isLoginModalVisible: true })}>Login</Button>
+          <Button onClick={() => test()}>Test</Button>
+        </Space>
       </div>
     )
   }
@@ -19,4 +22,4 @@ class Home extends React.Component {
 
 const mapStateToProps = state => ({})
 
-export default connect(mapStateToProps, { setState })(Home)
+export default connect(mapStateToProps, { setState, test })(Home)

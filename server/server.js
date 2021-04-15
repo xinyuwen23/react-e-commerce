@@ -1,5 +1,8 @@
 const express = require('express')
 const path = require('path')
+const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser')
+const cors = require('cors')
 
 const app = express()
 
@@ -10,6 +13,9 @@ app.use(express.static(buildPath))
 
 const authRouter = require('./api/auth')
 
+app.use(cors())
+app.use(cookieParser())
+app.use(bodyParser.json())
 app.use('/auth', authRouter)
 
 app.listen(PORT, () => {
