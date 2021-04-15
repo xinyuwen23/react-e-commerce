@@ -1,18 +1,25 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React from 'react'
+import { Switch, Route } from 'react-router-dom'
 
-import Home from './components/home';
-import Login from './components/login';
+import Home from './components/home'
+import LoginModal from './components/auth/loginModal'
+import RegisterModal from './components/auth/registerModal'
 
 class App extends React.Component {
   render() {
     return (
-      <Switch>
-        <Route path='/login' component={Login} />
-        <Route path='/' component={Home} />
-      </Switch>
-    );
+      <div>
+        {/* OtherComponents */}
+        <LoginModal />
+        <RegisterModal />
+        <div>
+          <Switch>
+            <Route component={Home} />
+          </Switch>
+        </div>
+      </div>
+    )
   }
 }
 
-export default App;
+export default App

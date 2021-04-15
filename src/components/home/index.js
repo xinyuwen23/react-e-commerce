@@ -1,12 +1,22 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
+import { Button } from 'antd'
+
+import { setState } from '../../actions'
 
 class Home extends React.Component {
   render() {
-    return <div>Home Page</div>;
+    const { setState } = this.props
+    return (
+      <div>
+        <div>Home Page</div>
+        <Button onClick={() => setState({ showRegisterModal: true })}>Register</Button>
+        <Button onClick={() => setState({ showLoginModal: true })}>Login</Button>
+      </div>
+    )
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({})
 
-export default connect(mapStateToProps, null)(Home);
+export default connect(mapStateToProps, { setState })(Home)

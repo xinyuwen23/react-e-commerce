@@ -1,13 +1,16 @@
-const initialState = {};
+const initialState = {
+  showRegisterModal: false,
+  showLoginModal: false,
+}
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'set_state':
-      return { ...state, ...action.value };
+      return { ...state, ...action.payload }
 
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default reducer;
+export default reducer
