@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Modal, Space, Input, Button, Checkbox } from 'antd'
 
 import { setState } from '../../actions'
-import { register } from '../../actions/authActions'
+import { register } from '../../actions/auth'
 
 class RegisterModal extends React.Component {
   state = {
@@ -54,7 +54,7 @@ class RegisterModal extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  isRegisterModalVisible: state.isRegisterModalVisible,
+  isRegisterModalVisible: state.auth.isRegisterModalVisible,
 })
 
 export default connect(mapStateToProps, { setState, register })(RegisterModal)

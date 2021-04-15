@@ -1,6 +1,8 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
+import './config/messageConfig'
+
 import Home from './components/home'
 import LoginModal from './components/auth/loginModal'
 import RegisterModal from './components/auth/registerModal'

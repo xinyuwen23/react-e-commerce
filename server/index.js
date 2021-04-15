@@ -8,9 +8,9 @@ const PORT = process.env.PORT || 4000
 const buildPath = path.join(__dirname, '..', 'build')
 app.use(express.static(buildPath))
 
-app.get('/', (req, res) => {
-  res.send('E-Commerce Server')
-})
+const authRouter = require('./api/auth')
+
+app.use('/auth', authRouter)
 
 app.listen(PORT, () => {
   console.log(`server started on port ${PORT}`)

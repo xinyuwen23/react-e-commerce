@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Modal, Space, Input, Button } from 'antd'
 
 import { setState } from '../../actions'
-import { login } from '../../actions/authActions'
+import { login } from '../../actions/auth'
 
 class LoginModal extends React.Component {
   state = {
@@ -43,7 +43,7 @@ class LoginModal extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  isLoginModalVisible: state.isLoginModalVisible,
+  isLoginModalVisible: state.auth.isLoginModalVisible,
 })
 
 export default connect(mapStateToProps, { setState, login })(LoginModal)
