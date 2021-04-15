@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Modal, Space, Input, Button } from 'antd'
 
 import { setState } from '../../actions'
-import { handleLogin } from '../../actions/authActions'
+import { login } from '../../actions/authActions'
 
 class LoginModal extends React.Component {
   state = {
@@ -12,15 +12,14 @@ class LoginModal extends React.Component {
   }
 
   render() {
-    const { showLoginModal, setState, handleLogin } = this.props
+    const { showLoginModal, setState, login } = this.props
     return (
       <Modal
-        title='Register'
+        title='Login'
         visible={showLoginModal}
-        okText='Register'
         onCancel={() => setState({ showLoginModal: false })}
         footer={[
-          <Button key='register' type='primary' onClick={() => handleLogin(this.state)}>
+          <Button key='register' type='primary' onClick={() => login(this.state)}>
             Submit
           </Button>,
         ]}
@@ -41,4 +40,4 @@ const mapStateToProps = state => ({
   showLoginModal: state.showLoginModal,
 })
 
-export default connect(mapStateToProps, { setState, handleLogin })(LoginModal)
+export default connect(mapStateToProps, { setState, login })(LoginModal)
