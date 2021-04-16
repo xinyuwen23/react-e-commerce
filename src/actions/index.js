@@ -5,13 +5,7 @@ export const setState = payload => dispatch => {
 }
 
 export const test = () => () => {
-  console.log('test')
-  axios
-    .get('/auth/list')
-    .then(res => {
-      console.log(res)
-    })
-    .catch(error => {
-      console.log(error)
-    })
+  axios.get('auth/list').then(res => {
+    console.log(res)
+  })
 }
