@@ -1,12 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { Space, Button } from 'antd'
 
 import { setState, test } from '../../actions'
+import { logout } from '../../actions/auth'
 
 class Home extends React.Component {
   render() {
-    const { setState, test } = this.props
+    const { history, setState, test, logout } = this.props
     return (
       <div>
         <div>Home Page</div>
@@ -14,6 +16,7 @@ class Home extends React.Component {
           <Button onClick={() => test()}>Test</Button>
           <Button onClick={() => setState({ isRegisterModalVisible: true })}>Register</Button>
           <Button onClick={() => setState({ isLoginModalVisible: true })}>Login</Button>
+          <Button onClick={() => logout(history)}>Logout</Button>
         </Space>
       </div>
     )
@@ -22,4 +25,4 @@ class Home extends React.Component {
 
 const mapStateToProps = state => ({})
 
-export default connect(mapStateToProps, { setState, test })(Home)
+export default connect(mapStateToProps, { setState, test, logout })(withRouter(Home))

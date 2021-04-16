@@ -16,6 +16,9 @@ const reducer = (state = initialState, action) => {
         isRegisterModalVisible: false,
       }
 
+    case 'LOGOUT':
+      return { ...state, user: '' }
+
     default:
       return state
   }

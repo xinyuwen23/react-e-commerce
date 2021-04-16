@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { message } from 'antd'
 import validator from 'validator'
+import browserCookies from 'browser-cookies'
 
 export const getUser = () => dispatch => {
   axios.get('auth/get_user').then(res => {
@@ -42,4 +43,11 @@ export const register = ({ email, name, password, password2, isSeller }) => disp
       }
     })
   }
+}
+
+export const logout = history => dispatch => {
+  browserCookies.erase('_id')
+  dispatch({ type: 'LOGOUT' })
+  history.push('/')
+  message.info('Logged out')
 }
