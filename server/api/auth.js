@@ -15,10 +15,10 @@ router.get('/list', (req, res) => {
   })
 })
 
-router.get('/get_user', (req, res) => {
+router.get('/get_user', async (req, res) => {
   const { _id } = req.cookies
   if (!_id) {
-    res.json({ code: 1 })
+    return res.json({ code: 1 })
   }
   User.findOne({ _id }, _userDataFilter, (err, doc) => {
     if (!err) {
@@ -27,9 +27,9 @@ router.get('/get_user', (req, res) => {
   })
 })
 
-router.post('/register', (req, res) => {
+router.post('/register', async (req, res) => {
+  console.log('register called')
   const { email, name, password, isSeller } = req.body
-  console.log(email)
   User.findOne({ email }, (err, doc) => {
     if (doc) {
       return res.json({ code: 1, message: 'Email already exists' })
@@ -45,7 +45,7 @@ router.post('/register', (req, res) => {
         return res.json({ code: 1, message: 'Server error' })
       }
       const { email, name, isSeller, _id } = doc
-      res.cookie('_id', _id)
+      // res.cookie('_id', _id)
       return res.json({
         code: 0,
         user: { email, name, isSeller, _id },
@@ -55,14 +55,15 @@ router.post('/register', (req, res) => {
   })
 })
 
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
+  console.log('login called')
   const { email, password } = req.body
   User.findOne({ email, password: md5Password(password) }, _userDataFilter, (err, doc) => {
     if (!doc) {
       return res.json({ code: 1, message: 'Wrong password' })
     }
     const { name, _id } = doc
-    res.cookie('_id', _id)
+    // res.cookie('_id', _id)
     return res.json({ code: 0, user: doc, message: `Welcome, ${name}` })
   })
 })
