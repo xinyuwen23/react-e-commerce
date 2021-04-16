@@ -67,6 +67,17 @@ router.post('/login', (req, res) => {
   })
 })
 
+// router.post('/login', (req, res) => {
+//   const { email, password } = req.body
+//   User.findOne({ email, password: md5Password(password) }, _userDataFilter, (err, doc) => {
+//     if (!doc) {
+//       return res.json({ code: 1, message: 'Wrong password' })
+//     }
+//     res.cookie('_id', doc._id)
+//     return res.json({ code: 0, user: doc })
+//   })
+// })
+
 const md5Password = password => {
   const salt = 'iXVsiTtV3t5S9hiS01lWrSIANGVjzMFt'
   return utils.md5(utils.md5(password + salt))
