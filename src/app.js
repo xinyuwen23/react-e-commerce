@@ -11,10 +11,10 @@ import RegisterModal from './components/auth/registerModal'
 import { getUser } from './actions/auth'
 
 class App extends React.Component {
-  // componentDidMount() {
-  //   const { getUser } = this.props
-  //   getUser()
-  // }
+  componentDidMount() {
+    const { getUser } = this.props
+    getUser()
+  }
 
   render() {
     return (
