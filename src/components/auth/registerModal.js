@@ -2,8 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Modal, Space, Input, Button, Checkbox } from 'antd'
 
-import { setState } from '../../actions'
-import { register } from '../../actions/auth'
+import { openLoginModal, closeRegisterModal, register } from '../../actions/auth'
 
 class RegisterModal extends React.Component {
   state = {
@@ -15,21 +14,18 @@ class RegisterModal extends React.Component {
   }
 
   render() {
-    const { isRegisterModalVisible, setState, register } = this.props
+    const { isRegisterModalVisible, openLoginModal, closeRegisterModal, register } = this.props
     return (
       <Modal
         title='Register'
         visible={isRegisterModalVisible}
-        onCancel={() => setState({ isRegisterModalVisible: false })}
+        onCancel={() => closeRegisterModal()}
         footer={[
-          <Button
-            key='login'
-            onClick={() => setState({ isRegisterModalVisible: false, isLoginModalVisible: true })}
-          >
-            Login
+          <Button key='login' onClick={() => openLoginModal()}>
+            I already have an account
           </Button>,
           <Button key='register' type='primary' onClick={() => register(this.state)}>
-            Submit
+            Register
           </Button>,
         ]}
       >
@@ -67,4 +63,8 @@ const mapStateToProps = state => ({
   isRegisterModalVisible: state.isRegisterModalVisible,
 })
 
-export default connect(mapStateToProps, { setState, register })(RegisterModal)
+export default connect(mapStateToProps, {
+  openLoginModal,
+  closeRegisterModal,
+  register,
+})(RegisterModal)

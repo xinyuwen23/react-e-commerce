@@ -1,6 +1,7 @@
 const initialState = {
   isLoginModalVisible: false,
   isRegisterModalVisible: false,
+  user: {},
 }
 
 const reducer = (state = initialState, action) => {
@@ -17,7 +18,7 @@ const reducer = (state = initialState, action) => {
       }
 
     case 'LOGOUT':
-      return { ...state, user: '' }
+      return { ...state, user: {} }
 
     default:
       return state

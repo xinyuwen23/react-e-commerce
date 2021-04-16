@@ -3,6 +3,28 @@ import { message } from 'antd'
 import validator from 'validator'
 import browserCookies from 'browser-cookies'
 
+export const openLoginModal = () => dispatch => {
+  dispatch({
+    type: 'SET_STATE',
+    payload: { isLoginModalVisible: true, isRegisterModalVisible: false },
+  })
+}
+
+export const closeLoginModal = () => dispatch => {
+  dispatch({ type: 'SET_STATE', payload: { isLoginModalVisible: false } })
+}
+
+export const openRegisterModal = () => dispatch => {
+  dispatch({
+    type: 'SET_STATE',
+    payload: { isRegisterModalVisible: true, isLoginModalVisible: false },
+  })
+}
+
+export const closeRegisterModal = () => dispatch => {
+  dispatch({ type: 'SET_STATE', payload: { isRegisterModalVisible: false } })
+}
+
 export const getUser = () => dispatch => {
   axios.get('auth/get_user').then(res => {
     if (res.status === 200 && res.data.code === 0) {
