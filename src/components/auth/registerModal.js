@@ -34,14 +34,24 @@ class RegisterModal extends React.Component {
         ]}
       >
         <Space style={{ width: '100%' }} direction='vertical'>
-          <Input placeholder='Email' onChange={e => this.setState({ email: e.target.value })} />
-          <Input placeholder='Name' onChange={e => this.setState({ name: e.target.value })} />
+          <Input
+            placeholder='Email'
+            value={this.state.email}
+            onChange={e => this.setState({ email: e.target.value })}
+          />
+          <Input
+            placeholder='Name'
+            value={this.state.name}
+            onChange={e => this.setState({ name: e.target.value })}
+          />
           <Input.Password
             placeholder='Password'
+            value={this.state.password}
             onChange={e => this.setState({ password: e.target.value })}
           />
           <Input.Password
             placeholder='Confirm Password'
+            value={this.state.password2}
             onChange={e => this.setState({ password2: e.target.value })}
           />
           <Checkbox onChange={e => this.setState({ isSeller: e.target.checked })}>
@@ -54,7 +64,7 @@ class RegisterModal extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  isRegisterModalVisible: state.auth.isRegisterModalVisible,
+  isRegisterModalVisible: state.isRegisterModalVisible,
 })
 
 export default connect(mapStateToProps, { setState, register })(RegisterModal)

@@ -5,7 +5,7 @@ export const setState = payload => dispatch => {
 }
 
 export const test = () => () => {
-  axios.get('auth/list').then(res => {
-    console.log(res)
+  axios.get('auth/get_user').then(res => {
+    console.log(res.data)
   })
 }

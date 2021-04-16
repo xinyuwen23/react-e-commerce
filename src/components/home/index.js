@@ -11,9 +11,9 @@ class Home extends React.Component {
       <div>
         <div>Home Page</div>
         <Space>
+          <Button onClick={() => test()}>Test</Button>
           <Button onClick={() => setState({ isRegisterModalVisible: true })}>Register</Button>
           <Button onClick={() => setState({ isLoginModalVisible: true })}>Login</Button>
-          <Button onClick={() => test()}>Test</Button>
         </Space>
       </div>
     )

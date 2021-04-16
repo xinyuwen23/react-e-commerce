@@ -5,12 +5,25 @@ const utils = require('utility')
 const models = require('../models')
 const User = models.getModel('user')
 
-const _filter = { password: 0, __v: 0, createdAt: 0, updatedAt: 0 }
+const _userDataFilter = { password: 0, __v: 0, createdAt: 0, updatedAt: 0 }
 
 router.get('/list', (req, res) => {
-  User.find({}, _filter, (err, doc) => {
+  User.find({}, _userDataFilter, (err, doc) => {
     if (!err) {
       return res.json(doc)
+    }
+  })
+})
+
+router.get('/get_user', (req, res) => {
+  console.log(req.cookies)
+  const { _id } = req.cookies
+  if (!_id) {
+    res.json({ code: 1 })
+  }
+  User.findOne({ _id }, _userDataFilter, (err, doc) => {
+    if (!err) {
+      return res.json({ code: 0, user: doc })
     }
   })
 })
@@ -30,19 +43,29 @@ router.post('/register', (req, res) => {
     })
     userModel.save((err, doc) => {
       if (err) {
-        return res.json({ code: 1, message: 'Server Error' })
+        return res.json({ code: 1, message: 'Server error' })
       }
       const { email, name, isSeller, _id } = doc
-      res.cookie(_id)
-      return res.json({ code: 0, user: { email, name, isSeller, _id } })
+      res.cookie('_id', _id)
+      return res.json({
+        code: 0,
+        user: { email, name, isSeller, _id },
+        message: `Welcome, ${name}`,
+      })
     })
   })
 })
 
 router.post('/login', (req, res) => {
-  console.log('Login')
-  console.log(req.body)
-  console.log(req.cookies)
+  const { email, password } = req.body
+  User.findOne({ email, password: md5Password(password) }, _userDataFilter, (err, doc) => {
+    if (!doc) {
+      return res.json({ code: 1, message: 'Wrong password' })
+    }
+    const { name, _id } = doc
+    res.cookie('_id', _id)
+    return res.json({ code: 0, user: doc, message: `Welcome, ${name}` })
+  })
 })
 
 const md5Password = password => {
