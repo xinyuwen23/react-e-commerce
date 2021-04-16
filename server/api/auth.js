@@ -16,7 +16,6 @@ router.get('/list', (req, res) => {
 })
 
 router.get('/get_user', (req, res) => {
-  console.log(req.cookies)
   const { _id } = req.cookies
   if (!_id) {
     res.json({ code: 1 })
