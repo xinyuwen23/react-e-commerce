@@ -5,7 +5,7 @@ import { Space, Button } from 'antd'
 
 import { setState, test } from '../../actions'
 import { logout } from '../../actions/auth'
-import { openUploadModal } from '../../actions/items'
+import { openUploadModal } from '../../actions/item'
 
 class Home extends React.Component {
   render() {

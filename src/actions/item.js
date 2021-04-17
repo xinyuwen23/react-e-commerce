@@ -11,7 +11,7 @@ export const closeUploadModal = () => dispatch => {
 }
 
 export const getItem = _id => dispatch => {
-  axios.post('items/get_item', { _id }).then(res => {
+  axios.post('item/get_item', { _id }).then(res => {
     if (res.status === 200 && res.data.code === 0) {
       dispatch({ type: 'GET_ITEM', payload: res.data.item })
     }
@@ -26,7 +26,7 @@ export const upload = ({ title, description, price, quantity, category }) => dis
   } else if (!validator.isInt(quantity) || quantity < 0) {
     message.error('Quantity must be integer and larger or equal to 0')
   } else {
-    axios.post('items/upload', { title, description, price, quantity, category }).then(res => {
+    axios.post('item/upload', { title, description, price, quantity, category }).then(res => {
       if (res.status === 200 && res.data.code === 0) {
         dispatch({ type: 'UPLOAD_ITEM' })
         message.success(res.data.message)

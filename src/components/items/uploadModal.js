@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Modal, Space, Input, Button } from 'antd'
 
-import { closeUploadModal, upload } from '../../actions/items'
+import { closeUploadModal, upload } from '../../actions/item'
 
 class UploadModal extends React.Component {
   state = {

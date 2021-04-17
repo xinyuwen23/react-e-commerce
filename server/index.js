@@ -16,7 +16,7 @@ app.use(express.static(buildPath))
 app.use(cookieParser())
 app.use(bodyParser.json())
 app.use('/auth', authRouter)
-app.use('/items', itemRouter)
+app.use('/item', itemRouter)
 
 app.listen(PORT, () => {
   console.log(`server started on port ${PORT}`)
