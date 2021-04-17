@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Modal, Space, Input, Button } from 'antd'
 
-import { closeUploadModal, upload } from '../../actions/item'
+import { closeUploadModal, uploadItem } from '../../actions/item'
 
 class UploadModal extends React.Component {
   state = {
@@ -14,14 +14,14 @@ class UploadModal extends React.Component {
   }
 
   render() {
-    const { isUploadModalVisible, closeUploadModal, upload } = this.props
+    const { isUploadModalVisible, closeUploadModal, uploadItem } = this.props
     return (
       <Modal
         title='Upload an Item'
         visible={isUploadModalVisible}
         onCancel={() => closeUploadModal()}
         footer={[
-          <Button key='upload' type='primary' onClick={() => upload(this.state)}>
+          <Button key='upload' type='primary' onClick={() => uploadItem(this.state)}>
             Upload
           </Button>,
         ]}
@@ -64,4 +64,4 @@ const mapStateToProps = state => ({
   isUploadModalVisible: state.isUploadModalVisible,
 })
 
-export default connect(mapStateToProps, { closeUploadModal, upload })(UploadModal)
+export default connect(mapStateToProps, { closeUploadModal, uploadItem })(UploadModal)

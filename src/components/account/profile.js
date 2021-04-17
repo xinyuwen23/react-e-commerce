@@ -15,6 +15,7 @@ class Profile extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  isUserLoaded: state.isUserLoaded,
   user: state.user,
 })
 

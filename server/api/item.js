@@ -4,8 +4,6 @@ const router = express.Router()
 const models = require('../models')
 const Item = models.getModel('item')
 
-const _itemDataFilter = { __v: 0 }
-
 router.get('/list', (req, res) => {
   Item.find({}, (err, doc) => {
     if (!err) {
@@ -16,7 +14,7 @@ router.get('/list', (req, res) => {
 
 router.post('/get_item', (req, res) => {
   const { _id } = req.body
-  Item.findOne({ _id }, _itemDataFilter, (err, doc) => {
+  Item.findOne({ _id }, (err, doc) => {
     if (!doc) {
       return res.json({ code: 1, message: "Couldn't find item" })
     }

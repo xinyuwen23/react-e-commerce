@@ -10,13 +10,14 @@ import LoginModal from './components/auth/loginModal'
 import RegisterModal from './components/auth/registerModal'
 import Profile from './components/account/profile'
 import UploadModal from './components/items/uploadModal'
+import Item from './components/items/item'
+import ItemList from './components/items/itemList'
 
 import { getUser } from './actions/auth'
 
 class App extends React.Component {
   componentDidMount() {
     const { getUser } = this.props
-    console.log('componentDidMount')
     getUser()
   }
 
@@ -31,6 +32,8 @@ class App extends React.Component {
         <div>
           <Switch>
             <Route exact path='/profile' component={Profile} />
+            <Route exact path='/items' component={ItemList} />
+            <Route exact path='/item/:_id' component={Item} />
             <Route exact path='/' component={Home} />
           </Switch>
         </div>
