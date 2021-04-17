@@ -17,12 +17,18 @@ const models = {
   item: {
     title: { type: String, required: true },
     description: { type: String, required: true },
-    price: { type: Number, required: true, min: [0, 'Price must be larger or equal to 0'] },
-    quantity: { type: Number, required: true, min: [0, 'Quantity must be larger or equal to 0'] },
+    price: { type: Number, required: true },
+    quantity: { type: Number, required: true },
     category: { type: String, required: true },
   },
   cart: {
-    user: { type: Schema.Types.ObjectId, ref: 'user' },
+    userId: { type: String, required: true, unique: true },
+    items: [
+      {
+        itemId: { type: String, required: true, unique: true },
+        quantity: { type: Number, required: true },
+      },
+    ],
   },
 }
 
