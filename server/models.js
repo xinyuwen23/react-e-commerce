@@ -9,10 +9,17 @@ mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const models = {
   user: {
-    email: { type: String, require: true, unique: true },
+    email: { type: String, required: true, unique: true },
     name: { type: String },
-    password: { type: String, require: true },
+    password: { type: String, required: true },
     isSeller: { type: Boolean, default: false },
+  },
+  item: {
+    title: { type: String, required: true },
+    description: { type: String, required: true },
+    price: { type: Number, required: true },
+    quantity: { type: Number, required: true },
+    category: { type: String, required: true },
   },
 }
 

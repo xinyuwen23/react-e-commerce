@@ -2,6 +2,9 @@ const initialState = {
   isLoginModalVisible: false,
   isRegisterModalVisible: false,
   user: {},
+
+  isUploadModalVisible: false,
+  item: {},
 }
 
 const reducer = (state = initialState, action) => {
@@ -9,7 +12,7 @@ const reducer = (state = initialState, action) => {
     case 'SET_STATE':
       return { ...state, ...action.payload }
 
-    case 'LOAD_USER':
+    case 'GET_USER':
       return {
         ...state,
         user: action.payload,
@@ -19,6 +22,12 @@ const reducer = (state = initialState, action) => {
 
     case 'LOGOUT':
       return { ...state, user: {} }
+
+    case 'GET_ITEM':
+      return { ...state, item: action.payload }
+
+    case 'UPLOAD_ITEM':
+      return { ...state, isUploadModalVisible: false }
 
     default:
       return state
