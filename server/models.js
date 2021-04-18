@@ -47,10 +47,36 @@ const cartSchema = new Schema(
   { timestamps: true }
 )
 
+const addressSchema = new Schema({
+  user: { type: Schema.Types.ObjectId, ref: 'user' },
+  name: { type: String, required: true },
+  address: { type: String, required: true },
+  city: { type: String, required: true },
+  state: { type: String, required: true },
+  zip: { type: String, required: true },
+  region: { type: String, required: true },
+})
+
+// const orderSchema = new Schema({
+//   user: { type: Schema.Types.ObjectId, ref: 'user' },
+//   items: [
+//     {
+//       item: { type: Schema.Types.ObjectId, ref: 'item' },
+//       title: { type: String, required: true },
+//       price: { type: Number, required: true },
+//       quantity: { type: Number, required: true },
+//     },
+//   ],
+//   price: { type: Number, required: true },
+//   address: { type: Schema.Types.ObjectId, ref: 'address' },
+// })
+
 const User = mongoose.model('user', userSchema)
 const Item = mongoose.model('item', itemSchema)
 const Cart = mongoose.model('cart', cartSchema)
+const Address = mongoose.model('address', addressSchema)
 
 exports.User = User
 exports.Item = Item
 exports.Cart = Cart
+exports.Address = Address

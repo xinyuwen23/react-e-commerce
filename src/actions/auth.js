@@ -39,7 +39,7 @@ export const login = ({ email, password }) => dispatch => {
   } else {
     axios.post('auth/login', { email, password }).then(res => {
       if (res.status === 200 && res.data.code === 0) {
-        dispatch({ type: 'GET_USER', payload: res.data.user })
+        dispatch({ type: 'GET_USER', payload: { user: res.data.user, cart: res.data.cart } })
         message.success(res.data.message)
       } else {
         message.error(res.data.message)
@@ -58,7 +58,7 @@ export const register = ({ email, name, password, password2, isSeller }) => disp
   } else {
     axios.post('auth/register', { email, name, password, isSeller }).then(res => {
       if (res.status === 200 && res.data.code === 0) {
-        dispatch({ type: 'GET_USER', payload: res.data.user })
+        dispatch({ type: 'GET_USER', payload: { user: res.data.user, cart: res.data.cart } })
         message.success(res.data.message)
       } else {
         message.error(res.data.message)

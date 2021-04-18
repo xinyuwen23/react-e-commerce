@@ -59,15 +59,19 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res) => {
   const { email, password } = req.body
-  User.findOne({ email, password: md5Password(password) }, _userFilter, (err, doc) => {
-    if (!doc) {
+  User.findOne({ email, password: md5Password(password) }, _userFilter, (err, user) => {
+    if (!user) {
       return res.json({ code: 1, message: 'Wrong password' })
     }
-    const { name, _id } = doc
+    const { _id, name } = user
     res.cookie('_id', _id)
-    return res.json({ code: 0, user: doc, message: `Welcome, ${name}` })
+    Cart.findOne({ user: _id }, _cartFilter, (err, cart) => {
+      return res.json({ code: 0, user, cart, message: `Welcome, ${name}` })
+    })
   })
 })
+
+// helper functions
 
 const md5Password = password => {
   const salt = 'iXVsiTtV3t5S9hiS01lWrSIANGVjzMFt'

@@ -25,7 +25,7 @@ const reducer = (state = initialState, action) => {
       }
 
     case 'LOGOUT':
-      return { ...state, user: {} }
+      return { ...state, user: {}, cart: {} }
 
     case 'GET_ITEM_LIST':
       return { ...state, itemList: action.payload }
