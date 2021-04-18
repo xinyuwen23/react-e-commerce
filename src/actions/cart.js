@@ -1,4 +1,6 @@
 import axios from 'axios'
+import browserCookies from 'browser-cookies'
+import { message } from 'antd'
 
 export const getCart = () => dispatch => {
   axios.get('cart/get_cart').then(res => {
@@ -9,11 +11,16 @@ export const getCart = () => dispatch => {
 }
 
 export const updateCart = (item, quantity) => dispatch => {
-  axios.post('cart/update_cart', { item, quantity }).then(res => {
-    if (res.status === 200 && res.data.code === 0) {
-      dispatch({ type: 'GET_CART', payload: res.data.cart })
-    }
-  })
+  if (!browserCookies.get('_id')) {
+    message.warning('Please login')
+    dispatch({ type: 'SET_STATE', payload: { isLoginModalVisible: true } })
+  } else {
+    axios.post('cart/update_cart', { item, quantity }).then(res => {
+      if (res.status === 200 && res.data.code === 0) {
+        dispatch({ type: 'GET_CART', payload: res.data.cart })
+      }
+    })
+  }
 }
 
 export const emptyCart = () => dispatch => {

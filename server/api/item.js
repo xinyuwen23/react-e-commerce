@@ -14,25 +14,25 @@ router.get('/list', (req, res) => {
 
 router.post('/get_item', (req, res) => {
   const { _id } = req.body
-  Item.findOne({ _id }, (err, doc) => {
-    const item = doc
-    User.findOne({ _id: item.seller }, (err, doc) => {
+  Item.findOne({ _id }, (err, item) => {
+    User.findOne({ _id: item.seller }, (err, user) => {
       const { _id, title, description, price, category } = item
-      const seller = doc.name
+      const seller = user.name
       return res.json({ code: 0, item: { _id, title, description, price, category, seller } })
     })
   })
 })
 
 router.post('/upload_item', (req, res) => {
-  const { title, description, price, quantity, category, seller } = req.body
+  const { _id } = req.cookies
+  const { title, description, price, quantity, category } = req.body
   const item = new Item({
     title,
     description,
     price,
     quantity,
     category,
-    seller,
+    seller: _id,
   })
   item.save((err, doc) => {
     return res.json({ code: 0, message: 'Success' })

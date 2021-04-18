@@ -4,7 +4,8 @@ const router = express.Router()
 const Cart = require('../models').Cart
 const Item = require('../models').Item
 
-const updateCart = (cart, item, quantity, price) => {
+const updateCart = (cart, item, quantity, price, title) => {
+  console.log(item)
   cart.quantity += quantity
   cart.price += price * quantity
   const items = cart.items
@@ -16,7 +17,7 @@ const updateCart = (cart, item, quantity, price) => {
     items.splice(targetIndex, 1, targetItem)
     return cart
   } else {
-    const newItem = { item, quantity }
+    const newItem = { item, quantity, price, title }
     items.push(newItem)
     return cart
   }
@@ -48,11 +49,12 @@ router.get('/get_cart', (req, res) => {
 router.post('/update_cart', (req, res) => {
   const { _id } = req.cookies
   const { item, quantity } = req.body
-  Item.findOne({ _id: item }, (err, doc) => {
-    const price = doc.price
-    Cart.findOne({ user: _id }, (err, doc) => {
-      updateCart(doc, item, quantity, price)
-      Cart.findOneAndUpdate({ user: _id }, doc, { new: true }, (err, doc) => {
+  Item.findOne({ _id: item }, (err, target) => {
+    const price = target.price
+    const title = target.title
+    Cart.findOne({ user: _id }, (err, cart) => {
+      updateCart(cart, item, quantity, price, title)
+      Cart.findOneAndUpdate({ user: _id }, cart, { new: true }, (err, doc) => {
         const { _id, user, price, quantity, items } = doc
         return res.json({ code: 0, cart: { _id, user, price, quantity, items } })
       })

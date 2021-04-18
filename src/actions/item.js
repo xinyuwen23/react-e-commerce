@@ -26,11 +26,7 @@ export const getItem = _id => dispatch => {
   })
 }
 
-export const uploadItem = ({ title, description, price, quantity, category }) => (
-  dispatch,
-  getState
-) => {
-  const user = getState().user
+export const uploadItem = ({ title, description, price, quantity, category }) => dispatch => {
   if (!title || !description || !price || !quantity || !category) {
     message.error('All fields are required')
   } else if (!validator.isNumeric(price) || price < 0) {
@@ -38,13 +34,11 @@ export const uploadItem = ({ title, description, price, quantity, category }) =>
   } else if (!validator.isInt(quantity) || quantity < 0) {
     message.error('Quantity must be integer and larger or equal to 0')
   } else {
-    axios
-      .post('item/upload_item', { title, description, price, quantity, category, seller: user })
-      .then(res => {
-        if (res.status === 200 && res.data.code === 0) {
-          dispatch({ type: 'UPLOAD_ITEM' })
-          message.success(res.data.message)
-        }
-      })
+    axios.post('item/upload_item', { title, description, price, quantity, category }).then(res => {
+      if (res.status === 200 && res.data.code === 0) {
+        dispatch({ type: 'UPLOAD_ITEM' })
+        message.success(res.data.message)
+      }
+    })
   }
 }

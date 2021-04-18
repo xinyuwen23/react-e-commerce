@@ -10,14 +10,17 @@ class Cart extends React.Component {
         <div>Cart</div>
         {cart.items.length ? (
           cart.items.map(item => (
-            <Space>
-              <div>Item ID: {item.item}</div>
+            <Space key={item.item}>
+              <div>Item: {item.title}</div>
               <div>Quantity: {item.quantity}</div>
+              <div>Price: {item.price}</div>
             </Space>
           ))
         ) : (
           <div>Cart is empty</div>
         )}
+        <div>Quantity: {cart.quantity}</div>
+        <div>Total: {cart.price}</div>
       </Space>
     )
   }

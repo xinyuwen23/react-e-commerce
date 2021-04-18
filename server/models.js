@@ -38,6 +38,8 @@ const cartSchema = new Schema(
     items: [
       {
         item: { type: Schema.Types.ObjectId, ref: 'item' },
+        title: { type: String, required: true },
+        price: { type: Number, required: true },
         quantity: { type: Number, required: true },
       },
     ],
