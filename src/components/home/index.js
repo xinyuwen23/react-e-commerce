@@ -10,7 +10,7 @@ import { getCart } from '../../actions/cart'
 
 class Home extends React.Component {
   render() {
-    const { history, user, test, openUploadModal, getCart } = this.props
+    const { history, test, openUploadModal, getCart } = this.props
     return (
       <div>
         <div>Home Page</div>
@@ -18,16 +18,14 @@ class Home extends React.Component {
           <Button onClick={() => test()}>Test</Button>
           <Button onClick={() => openUploadModal()}>Upload</Button>
           <Button onClick={() => history.push('/items')}>Items</Button>
-          <Button onClick={() => getCart(user)}>Get Cart</Button>
+          <Button onClick={() => getCart()}>Get Cart</Button>
         </Space>
       </div>
     )
   }
 }
 
-const mapStateToProps = state => ({
-  user: state.user,
-})
+const mapStateToProps = state => ({})
 
 export default connect(mapStateToProps, { setState, test, logout, openUploadModal, getCart })(
   withRouter(Home)

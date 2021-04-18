@@ -1,7 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Button } from 'antd'
 
 import { getItem } from '../../actions/item'
+import { updateCart } from '../../actions/cart'
 
 class Item extends React.Component {
   componentDidMount() {
@@ -11,13 +13,15 @@ class Item extends React.Component {
   }
 
   render() {
-    const { item } = this.props
+    const { item, updateCart } = this.props
     return (
       <div>
         <div>Item Detail</div>
         <div>Title: {item.title}</div>
         <div>Price: {item.price}</div>
         <div>Seller: {item.seller}</div>
+        <Button onClick={() => updateCart(item._id, 1)}>Add 1 to Cart</Button>
+        <Button onClick={() => updateCart(item._id, -1)}>Subtract 1 to Cart</Button>
       </div>
     )
   }
@@ -27,4 +31,4 @@ const mapStateToProps = state => ({
   item: state.item,
 })
 
-export default connect(mapStateToProps, { getItem })(Item)
+export default connect(mapStateToProps, { getItem, updateCart })(Item)

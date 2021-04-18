@@ -5,10 +5,11 @@ const utils = require('utility')
 const User = require('../models').User
 const Cart = require('../models').Cart
 
-const _userDataFilter = { password: 0, __v: 0, createdAt: 0, updatedAt: 0 }
+const _userFilter = { password: 0, __v: 0, createdAt: 0, updatedAt: 0 }
+const _cartFilter = { __v: 0, createdAt: 0, updatedAt: 0 }
 
 router.get('/list', (req, res) => {
-  User.find({}, _userDataFilter, (err, doc) => {
+  User.find({}, _userFilter, (err, doc) => {
     return res.json(doc)
   })
 })
@@ -18,9 +19,9 @@ router.get('/get_user', (req, res) => {
   if (!_id) {
     return res.json({ code: 1 })
   }
-  User.findOne({ _id }, (err, doc) => {
+  User.findOne({ _id }, _userFilter, (err, doc) => {
     const user = doc
-    Cart.findOne({ user: _id }, (err, doc) => {
+    Cart.findOne({ user: _id }, _cartFilter, (err, doc) => {
       const cart = doc
       return res.json({ code: 0, user, cart })
     })
@@ -55,7 +56,7 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res) => {
   const { email, password } = req.body
-  User.findOne({ email, password: md5Password(password) }, _userDataFilter, (err, doc) => {
+  User.findOne({ email, password: md5Password(password) }, _userFilter, (err, doc) => {
     if (!doc) {
       return res.json({ code: 1, message: 'Wrong password' })
     }
