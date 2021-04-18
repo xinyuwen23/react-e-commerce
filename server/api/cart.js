@@ -39,8 +39,9 @@ router.get('/list', (req, res) => {
 
 router.get('/get_cart', (req, res) => {
   const { _id } = req.cookies
-  Cart.findOne({ user: _id }, (err, doc) => {
-    return res.json({ code: 0, cart: doc })
+  Cart.findOne({ user: _id }, (err, cart) => {
+    const { _id, user, price, quantity, items } = cart
+    return res.json({ code: 0, cart: { _id, user, price, quantity, items } })
   })
 })
 
