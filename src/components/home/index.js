@@ -6,10 +6,11 @@ import { Space, Button } from 'antd'
 import { setState, test } from '../../actions'
 import { logout } from '../../actions/auth'
 import { openUploadModal } from '../../actions/item'
+import { getCart } from '../../actions/cart'
 
 class Home extends React.Component {
   render() {
-    const { history, test, openUploadModal } = this.props
+    const { history, user, test, openUploadModal, getCart } = this.props
     return (
       <div>
         <div>Home Page</div>
@@ -17,14 +18,17 @@ class Home extends React.Component {
           <Button onClick={() => test()}>Test</Button>
           <Button onClick={() => openUploadModal()}>Upload</Button>
           <Button onClick={() => history.push('/items')}>Items</Button>
+          <Button onClick={() => getCart(user)}>Get Cart</Button>
         </Space>
       </div>
     )
   }
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({
+  user: state.user,
+})
 
-export default connect(mapStateToProps, { setState, test, logout, openUploadModal })(
+export default connect(mapStateToProps, { setState, test, logout, openUploadModal, getCart })(
   withRouter(Home)
 )

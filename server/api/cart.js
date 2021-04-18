@@ -1,9 +1,7 @@
-const { Card } = require('antd')
 const express = require('express')
 const router = express.Router()
 
-const models = require('../models')
-const Cart = models.getModel('cart')
+const Cart = require('../models').Cart
 
 router.get('/list', (req, res) => {
   Cart.find({}, (err, doc) => {
@@ -13,25 +11,29 @@ router.get('/list', (req, res) => {
   })
 })
 
-// router.get('/get_cart', (req,res)=>{
-//   const { _id } = req.cookies
-//   Card.findOne({})
-// })
+router.post('/get_cart', (req, res) => {
+  const { user } = req.body
+  Cart.findOne({ user }, (err, doc) => {
+    return res.json({ code: 0, cart: doc })
+  })
+})
 
-// router.post('/upload', (req, res) => {
-//   const { title, description, price, quantity, category } = req.body
-//   const itemModel = new Item({
-//     title,
-//     description,
-//     price,
-//     quantity,
-//     category,
-//   })
-//   itemModel.save((err, doc) => {
-//     if (err) {
-//       return res.json({ code: 1, message: 'Server error' })
-//     }
-//     return res.json({ code: 0, message: 'Success' })
+// router.post('/add_to_cart', (req, res) => {
+//   const { _id, item } = req.body
+//   if (!user) {
+//     res.json({ code: 1 })
+//   }
+//   const body = req.body
+//   User.findByIdAndUpdate(userid, body, (err, doc) => {
+//     const data = Object.assign(
+//       {},
+//       {
+//         user: doc.user,
+//         type: doc.type,
+//       },
+//       body
+//     )
+//     return res.json({ code: 0, data })
 //   })
 // })
 

@@ -10,7 +10,7 @@ class ItemList extends React.Component {
     const { getItemList } = this.props
     getItemList()
   }
-  
+
   render() {
     const { history, itemList } = this.props
     return (
@@ -19,8 +19,8 @@ class ItemList extends React.Component {
           <Card
             key={item._id}
             hoverable
-            style={{ width: '300px' }}
-            cover={<img alt={item.title} src='https://images.alphacoders.com/113/1138231.jpg' />}
+            style={{ width: 300, height: 200 }}
+            // cover={<img alt={item.title} src='' />}
             onClick={() => history.push(`/item/${item._id}`)}
           >
             <Card.Meta title={item.title} description={item.category} />

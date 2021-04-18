@@ -1,8 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const models = require('../models')
-const Item = models.getModel('item')
+const Item = require('../models').Item
 
 router.get('/list', (req, res) => {
   Item.find({}, (err, doc) => {
@@ -22,19 +21,17 @@ router.post('/get_item', (req, res) => {
   })
 })
 
-router.post('/upload', (req, res) => {
-  const { title, description, price, quantity, category } = req.body
+router.post('/upload_item', (req, res) => {
+  const { title, description, price, quantity, category, seller } = req.body
   const itemModel = new Item({
     title,
     description,
     price,
     quantity,
     category,
+    seller,
   })
   itemModel.save((err, doc) => {
-    if (err) {
-      return res.json({ code: 1, message: 'Server error' })
-    }
     return res.json({ code: 0, message: 'Success' })
   })
 })

@@ -7,7 +7,7 @@ import { openRegisterModal, closeLoginModal, login } from '../../actions/auth'
 class LoginModal extends React.Component {
   state = {
     email: 'admin@ecommerce.com',
-    password: 'Q95Zqb5F5OCVTqM9',
+    password: '123',
   }
 
   render() {

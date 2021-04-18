@@ -16,6 +16,8 @@ class Item extends React.Component {
       <div>
         <div>Item Detail</div>
         <div>Title: {item.title}</div>
+        <div>Price: {item.price}</div>
+        <div>Seller: {item.seller}</div>
       </div>
     )
   }

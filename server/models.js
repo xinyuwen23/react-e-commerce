@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const DB_URL =
   process.env.MONGODB_URI ||
@@ -7,35 +8,47 @@ const DB_URL =
 
 mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 
-const models = {
-  user: {
+const userSchema = new Schema(
+  {
     email: { type: String, required: true, unique: true },
     name: { type: String },
     password: { type: String, required: true },
     isSeller: { type: Boolean, default: false },
   },
-  item: {
+  { timestamps: true }
+)
+
+const itemSchema = new Schema(
+  {
     title: { type: String, required: true },
     description: { type: String, required: true },
     price: { type: Number, required: true },
     quantity: { type: Number, required: true },
     category: { type: String, required: true },
+    seller: { type: Schema.Types.ObjectId, ref: 'user' },
   },
-  cart: {
-    userId: { type: String, required: true, unique: true },
+  { timestamps: true }
+)
+
+const cartSchema = new Schema(
+  {
+    user: { type: Schema.Types.ObjectId, ref: 'user' },
+    price: { type: Number, required: true },
+    quantity: { type: Number, required: true },
     items: [
       {
-        itemId: { type: String, required: true, unique: true },
+        item: { type: Schema.Types.ObjectId, ref: 'item' },
         quantity: { type: Number, required: true },
       },
     ],
   },
-}
+  { timestamps: true }
+)
 
-for (let model in models) {
-  mongoose.model(model, new mongoose.Schema(models[model], { timestamps: true }))
-}
+const User = mongoose.model('user', userSchema)
+const Item = mongoose.model('item', itemSchema)
+const Cart = mongoose.model('cart', cartSchema)
 
-module.exports = {
-  getModel: name => mongoose.model(name),
-}
+exports.User = User
+exports.Item = Item
+exports.Cart = Cart

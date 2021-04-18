@@ -28,7 +28,7 @@ export const closeRegisterModal = () => dispatch => {
 export const getUser = () => dispatch => {
   axios.get('auth/get_user').then(res => {
     if (res.status === 200 && res.data.code === 0) {
-      dispatch({ type: 'GET_USER', payload: res.data.user })
+      dispatch({ type: 'GET_USER', payload: { user: res.data.user, cart: res.data.cart } })
     }
   })
 }
