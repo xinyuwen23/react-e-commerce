@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Button } from 'antd'
+import { Space, Button } from 'antd'
 
 import { getItem } from '../../actions/item'
 import { updateCart, emptyCart } from '../../actions/cart'
@@ -15,15 +15,17 @@ class Item extends React.Component {
   render() {
     const { item, updateCart, emptyCart } = this.props
     return (
-      <div>
-        <div>Item Detail</div>
+      <Space direction='vertical'>
+        <div>Item Page</div>
         <div>Title: {item.title}</div>
         <div>Price: {item.price}</div>
         <div>Seller: {item.seller}</div>
-        <Button onClick={() => updateCart(item._id, 1)}>Add 1 to Cart</Button>
-        <Button onClick={() => updateCart(item._id, -1)}>Remove 1 from Cart</Button>
-        <Button onClick={() => emptyCart()}>Empty Cart</Button>
-      </div>
+        <Space>
+          <Button onClick={() => updateCart(item._id, 1)}>Add 1 to Cart</Button>
+          <Button onClick={() => updateCart(item._id, -1)}>Remove 1 from Cart</Button>
+          <Button onClick={() => emptyCart()}>Empty Cart</Button>
+        </Space>
+      </Space>
     )
   }
 }

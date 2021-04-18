@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const Item = require('../models').Item
+const User = require('../models').User
 
 router.get('/list', (req, res) => {
   Item.find({}, (err, doc) => {
@@ -14,10 +15,12 @@ router.get('/list', (req, res) => {
 router.post('/get_item', (req, res) => {
   const { _id } = req.body
   Item.findOne({ _id }, (err, doc) => {
-    if (!doc) {
-      return res.json({ code: 1, message: "Couldn't find item" })
-    }
-    return res.json({ code: 0, item: doc, message: 'Success' })
+    const item = doc
+    User.findOne({ _id: item.seller }, (err, doc) => {
+      const { title, description, price, category } = item
+      const seller = doc.name
+      return res.json({ code: 0, item: { title, description, price, category, seller } })
+    })
   })
 })
 
