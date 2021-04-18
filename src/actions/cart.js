@@ -15,3 +15,11 @@ export const updateCart = (item, quantity) => dispatch => {
     }
   })
 }
+
+export const emptyCart = () => dispatch => {
+  axios.get('cart/empty_cart').then(res => {
+    if (res.status === 200 && res.data.code === 0) {
+      dispatch({ type: 'GET_CART', payload: res.data.cart })
+    }
+  })
+}
