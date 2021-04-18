@@ -17,16 +17,16 @@ router.post('/get_item', (req, res) => {
   Item.findOne({ _id }, (err, doc) => {
     const item = doc
     User.findOne({ _id: item.seller }, (err, doc) => {
-      const { title, description, price, category } = item
+      const { _id, title, description, price, category } = item
       const seller = doc.name
-      return res.json({ code: 0, item: { title, description, price, category, seller } })
+      return res.json({ code: 0, item: { _id, title, description, price, category, seller } })
     })
   })
 })
 
 router.post('/upload_item', (req, res) => {
   const { title, description, price, quantity, category, seller } = req.body
-  const itemModel = new Item({
+  const item = new Item({
     title,
     description,
     price,
@@ -34,7 +34,7 @@ router.post('/upload_item', (req, res) => {
     category,
     seller,
   })
-  itemModel.save((err, doc) => {
+  item.save((err, doc) => {
     return res.json({ code: 0, message: 'Success' })
   })
 })

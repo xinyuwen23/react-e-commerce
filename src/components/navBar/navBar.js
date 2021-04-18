@@ -24,6 +24,9 @@ class NavBar extends React.Component {
             Logout
           </Menu.Item>
         </Menu.SubMenu>
+        <Menu.Item key='cart' onClick={() => history.push('/cart')}>
+          Cart
+        </Menu.Item>
       </Menu>
     )
   }

@@ -12,6 +12,7 @@ import Profile from './components/account/profile'
 import UploadModal from './components/items/uploadModal'
 import Item from './components/items/item'
 import ItemList from './components/items/itemList'
+import Cart from './components/cart'
 
 import { getUser } from './actions/auth'
 
@@ -34,6 +35,7 @@ class App extends React.Component {
             <Route exact path='/profile' component={Profile} />
             <Route exact path='/items' component={ItemList} />
             <Route exact path='/item/:_id' component={Item} />
+            <Route exact path='/cart' component={Cart} />
             <Route exact path='/' component={Home} />
           </Switch>
         </div>

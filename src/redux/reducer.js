@@ -7,7 +7,7 @@ const initialState = {
   item: {},
   itemList: [],
 
-  cart: {},
+  cart: { items: [] },
 }
 
 const reducer = (state = initialState, action) => {
