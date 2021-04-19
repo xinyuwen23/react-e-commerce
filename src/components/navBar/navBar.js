@@ -20,6 +20,9 @@ class NavBar extends React.Component {
           <Menu.Item key='profile' onClick={() => history.push('/profile')}>
             Profile
           </Menu.Item>
+          <Menu.Item key='addressbook' onClick={() => history.push('/addressbook')}>
+            Address Book
+          </Menu.Item>
           <Menu.Item key='logout' onClick={() => logout(history)}>
             Logout
           </Menu.Item>

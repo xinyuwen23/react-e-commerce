@@ -35,7 +35,7 @@ router.post('/upload_item', (req, res) => {
     seller: _id,
   })
   item.save((err, doc) => {
-    return res.json({ code: 0, message: 'Success' })
+    return res.json({ code: 0, message: 'Item added' })
   })
 })
 

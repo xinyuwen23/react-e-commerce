@@ -13,6 +13,8 @@ import UploadModal from './components/items/uploadModal'
 import Item from './components/items/item'
 import ItemList from './components/items/itemList'
 import Cart from './components/cart'
+import AddressModal from './components/address/addressModal'
+import AddressBook from './components/account/addressBook'
 
 import { getUser } from './actions/auth'
 
@@ -30,12 +32,14 @@ class App extends React.Component {
         <LoginModal />
         <RegisterModal />
         <UploadModal />
+        <AddressModal />
         <div>
           <Switch>
             <Route exact path='/profile' component={Profile} />
             <Route exact path='/items' component={ItemList} />
             <Route exact path='/item/:_id' component={Item} />
             <Route exact path='/cart' component={Cart} />
+            <Route exact path='/addressbook' component={AddressBook} />
             <Route exact path='/' component={Home} />
           </Switch>
         </div>

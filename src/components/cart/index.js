@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Space } from 'antd'
+import { Space, Button } from 'antd'
 
 class Cart extends React.Component {
   render() {
@@ -9,18 +9,21 @@ class Cart extends React.Component {
       <Space direction='vertical'>
         <div>Cart</div>
         {cart.items.length ? (
-          cart.items.map(item => (
-            <Space key={item.item}>
-              <div>Item: {item.title}</div>
-              <div>Quantity: {item.quantity}</div>
-              <div>Price: {item.price}</div>
-            </Space>
-          ))
+          <Space direction='vertical'>
+            {cart.items.map(item => (
+              <Space key={item.item}>
+                <div>Item: {item.title}</div>
+                <div>Quantity: {item.quantity}</div>
+                <div>Price: {item.price}</div>
+              </Space>
+            ))}
+            <div>Quantity: {cart.quantity}</div>
+            <div>Total: {cart.price}</div>
+          </Space>
         ) : (
           <div>Cart is empty</div>
         )}
-        <div>Quantity: {cart.quantity}</div>
-        <div>Total: {cart.price}</div>
+        <Button>Check out</Button>
       </Space>
     )
   }
