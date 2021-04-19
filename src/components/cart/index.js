@@ -4,7 +4,7 @@ import { Space, Button } from 'antd'
 
 class Cart extends React.Component {
   render() {
-    const { cart } = this.props
+    const { history, cart } = this.props
     return (
       <Space direction='vertical'>
         <div>Cart</div>
@@ -23,7 +23,7 @@ class Cart extends React.Component {
         ) : (
           <div>Cart is empty</div>
         )}
-        <Button>Check out</Button>
+        <Button onClick={() => history.push('/checkout')}>Check out</Button>
       </Space>
     )
   }

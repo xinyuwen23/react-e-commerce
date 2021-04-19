@@ -14,8 +14,10 @@ import Item from './components/items/item'
 import ItemList from './components/items/itemList'
 import Cart from './components/cart'
 import AddressModal from './components/address/addressModal'
-import AddressBook from './components/account/addressBook'
-import Orders from './components/account/orders'
+import AddressBook from './components/address/addressBook'
+import Orders from './components/orders/orders'
+import Checkout from './components/orders/checkout'
+import CheckoutDone from './components/orders/checkoutDone'
 
 import { getUser } from './actions/auth'
 
@@ -42,6 +44,8 @@ class App extends React.Component {
             <Route exact path='/cart' component={Cart} />
             <Route exact path='/addressbook' component={AddressBook} />
             <Route exact path='/orders' component={Orders} />
+            <Route exact path='/checkout' component={Checkout} />
+            <Route exact path='/checkout-done' component={CheckoutDone} />
             <Route exact path='/' component={Home} />
           </Switch>
         </div>

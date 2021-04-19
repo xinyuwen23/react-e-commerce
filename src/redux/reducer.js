@@ -11,6 +11,9 @@ const initialState = {
 
   isAddressModalVisible: false,
   addressList: [],
+
+  orderList: [],
+  order: {},
 }
 
 const reducer = (state = initialState, action) => {
@@ -42,11 +45,17 @@ const reducer = (state = initialState, action) => {
     case 'GET_CART':
       return { ...state, cart: action.payload }
 
-    case 'GET_ADDRESS':
-      return { ...state, address: action.payload, isAddressModalVisible: false }
-
     case 'GET_ADDRESS_LIST':
-      return { ...state, addressList: action.payload }
+      return { ...state, addressList: action.payload, isAddressModalVisible: false }
+
+    case 'GET_ORDER_LIST':
+      return { ...state, orderList: action.payload }
+
+    case 'GET_ORDER':
+      return { ...state, order: action.payload }
+
+    case 'CREATE_ORDER':
+      return { ...state, orderList: action.payload.orderList, cart: action.payload.cart }
 
     default:
       return state

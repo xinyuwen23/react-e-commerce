@@ -29,11 +29,8 @@ router.post('/add_address', (req, res) => {
     region,
   })
   newAddress.save((err, doc) => {
-    const { user, name, address, city, state, zip, region } = doc
-    return res.json({
-      code: 0,
-      address: { user, name, address, city, state, zip, region },
-      message: 'Address added',
+    Address.find({ user: _id }, (req, addressList) => {
+      return res.json({ code: 0, addressList })
     })
   })
 })

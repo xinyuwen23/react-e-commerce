@@ -47,36 +47,46 @@ const cartSchema = new Schema(
   { timestamps: true }
 )
 
-const addressSchema = new Schema({
-  user: { type: Schema.Types.ObjectId, ref: 'user' },
-  name: { type: String, required: true },
-  address: { type: String, required: true },
-  city: { type: String, required: true },
-  state: { type: String, required: true },
-  zip: { type: String, required: true },
-  region: { type: String, required: true },
-})
+const addressSchema = new Schema(
+  {
+    user: { type: Schema.Types.ObjectId, ref: 'user' },
+    name: { type: String, required: true },
+    address: { type: String, required: true },
+    city: { type: String, required: true },
+    state: { type: String, required: true },
+    zip: { type: String, required: true },
+    region: { type: String, required: true },
+  },
+  { timestamps: true }
+)
 
-// const orderSchema = new Schema({
-//   user: { type: Schema.Types.ObjectId, ref: 'user' },
-//   items: [
-//     {
-//       item: { type: Schema.Types.ObjectId, ref: 'item' },
-//       title: { type: String, required: true },
-//       price: { type: Number, required: true },
-//       quantity: { type: Number, required: true },
-//     },
-//   ],
-//   price: { type: Number, required: true },
-//   address: { type: Schema.Types.ObjectId, ref: 'address' },
-// })
+const orderSchema = new Schema(
+  {
+    user: { type: Schema.Types.ObjectId, ref: 'user' },
+    items: [
+      {
+        item: { type: Schema.Types.ObjectId, ref: 'item' },
+        title: { type: String, required: true },
+        price: { type: Number, required: true },
+        quantity: { type: Number, required: true },
+      },
+    ],
+    address: { type: Schema.Types.ObjectId, ref: 'address' },
+    subtotal: { type: Number, required: true },
+    shippingCost: { type: Number, required: true },
+    total: { type: Number, required: true },
+  },
+  { timestamps: true }
+)
 
 const User = mongoose.model('user', userSchema)
 const Item = mongoose.model('item', itemSchema)
 const Cart = mongoose.model('cart', cartSchema)
 const Address = mongoose.model('address', addressSchema)
+const Order = mongoose.model('order', orderSchema)
 
 exports.User = User
 exports.Item = Item
 exports.Cart = Cart
 exports.Address = Address
+exports.Order = Order
