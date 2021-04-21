@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Modal, Space, Input, Button } from 'antd'
+import { Modal, Space, Input, Button, Upload } from 'antd'
+import { UploadOutlined } from '@ant-design/icons'
 
 import { closeUploadModal, uploadItem } from '../../actions/item'
 
@@ -11,15 +12,38 @@ class UploadModal extends React.Component {
     price: '',
     quantity: '',
     category: '',
+    fileList: [],
+    images: [],
   }
 
   render() {
     const { isUploadModalVisible, closeUploadModal, uploadItem } = this.props
+    const uploadProps = {
+      onRemove: file => {
+        this.setState(state => {
+          const index = state.fileList.indexOf(file)
+          const newFileList = state.fileList.slice()
+          newFileList.splice(index, 1)
+          return {
+            fileList: newFileList,
+          }
+        })
+      },
+      beforeUpload: file => {
+        this.setState(state => ({
+          fileList: [...state.fileList, file],
+        }))
+        return false
+      },
+      fileList: this.state.fileList,
+    }
     return (
       <Modal
-        title='Upload an Item'
+        title='Item Upload'
         visible={isUploadModalVisible}
-        onCancel={() => closeUploadModal()}
+        onCancel={() => {
+          closeUploadModal(this)
+        }}
         footer={[
           <Button key='upload' type='primary' onClick={() => uploadItem(this.state)}>
             Upload
@@ -54,6 +78,9 @@ class UploadModal extends React.Component {
             value={this.state.category}
             onChange={e => this.setState({ category: e.target.value })}
           />
+          <Upload {...uploadProps}>
+            <Button icon={<UploadOutlined />}>Select Images</Button>
+          </Upload>
         </Space>
       </Modal>
     )

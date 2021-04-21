@@ -6,7 +6,16 @@ export const openUploadModal = () => dispatch => {
   dispatch({ type: 'SET_STATE', payload: { isUploadModalVisible: true } })
 }
 
-export const closeUploadModal = () => dispatch => {
+export const closeUploadModal = uploadModal => dispatch => {
+  uploadModal.setState({
+    title: '',
+    description: '',
+    price: '',
+    quantity: '',
+    category: '',
+    fileList: [],
+    images: [],
+  })
   dispatch({ type: 'SET_STATE', payload: { isUploadModalVisible: false } })
 }
 
