@@ -80,14 +80,28 @@ const orderSchema = new Schema(
   { timestamps: true }
 )
 
+const helpSchema = new Schema(
+  {
+    user: { type: Schema.Types.ObjectId, ref: 'user' },
+    order: { type: Schema.Types.ObjectId, ref: 'order' },
+    action: { type: String },
+    description: { type: String },
+    images: [{ type: String }],
+    isSolved: { type: Boolean, default: false },
+  },
+  { timestamps: true }
+)
+
 const User = mongoose.model('user', userSchema)
 const Item = mongoose.model('item', itemSchema)
 const Cart = mongoose.model('cart', cartSchema)
 const Address = mongoose.model('address', addressSchema)
 const Order = mongoose.model('order', orderSchema)
+const Help = mongoose.model('help', helpSchema)
 
 exports.User = User
 exports.Item = Item
 exports.Cart = Cart
 exports.Address = Address
 exports.Order = Order
+exports.Help = Help

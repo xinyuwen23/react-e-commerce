@@ -14,6 +14,10 @@ const initialState = {
 
   orderList: [],
   order: {},
+
+  isHelpModalVisible: true,
+  help: {},
+  helpList: [],
 }
 
 const reducer = (state = initialState, action) => {
@@ -56,6 +60,15 @@ const reducer = (state = initialState, action) => {
 
     case 'CREATE_ORDER':
       return { ...state, orderList: action.payload.orderList, cart: action.payload.cart }
+
+    case 'GET_HELP_LIST':
+      return { ...state, helpList: action.payload }
+
+    case 'GET_HELP':
+      return { ...state, help: action.payload }
+
+    case 'CREATE_HELP':
+      return { ...state, isHelpModalVisible: false }
 
     default:
       return state

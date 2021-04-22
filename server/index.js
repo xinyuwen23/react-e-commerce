@@ -8,6 +8,7 @@ const itemRouter = require('./api/item')
 const cartRouter = require('./api/cart')
 const addressRouter = require('./api/address')
 const orderRouter = require('./api/order')
+const helpRouter = require('./api/help')
 
 const app = express()
 
@@ -23,6 +24,7 @@ app.use('/item', itemRouter)
 app.use('/cart', cartRouter)
 app.use('/address', addressRouter)
 app.use('/order', orderRouter)
+app.use('/help', helpRouter)
 
 app.listen(PORT, () => {
   console.log(`server started on port ${PORT}`)

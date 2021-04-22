@@ -26,8 +26,6 @@ router.post('/get_item', (req, res) => {
 router.post('/upload_item', (req, res) => {
   const { _id } = req.cookies
   const { title, description, price, quantity, category, images } = req.body
-  console.log(req.cookies)
-  console.log(req.body)
   const item = new Item({
     title,
     description,
@@ -37,8 +35,7 @@ router.post('/upload_item', (req, res) => {
     seller: _id,
     images,
   })
-  
-  item.save((err, doc) => {
+  item.save(() => {
     return res.json({ code: 0, message: 'Item added' })
   })
 })

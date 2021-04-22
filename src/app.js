@@ -18,6 +18,7 @@ import AddressBook from './components/address/addressBook'
 import Orders from './components/orders/orders'
 import Checkout from './components/orders/checkout'
 import CheckoutDone from './components/orders/checkoutDone'
+import HelpModal from './components/help/helpModal'
 
 import { getUser } from './actions/auth'
 
@@ -36,6 +37,7 @@ class App extends React.Component {
         <RegisterModal />
         <UploadModal />
         <AddressModal />
+        <HelpModal />
         <div>
           <Switch>
             <Route exact path='/profile' component={Profile} />

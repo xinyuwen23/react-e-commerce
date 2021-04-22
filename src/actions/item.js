@@ -34,7 +34,7 @@ export const getItem = _id => dispatch => {
   })
 }
 
-export const uploadItem = uploadModal => (dispatch) => {
+export const uploadItem = uploadModal => dispatch => {
   const { title, description, price, quantity, category, fileList } = uploadModal.state
   let images = []
   if (!title || !description || !price || !quantity || !category || !fileList) {
@@ -46,12 +46,11 @@ export const uploadItem = uploadModal => (dispatch) => {
   } else {
     uploadImages(fileList, images)
     setTimeout(() => {
-      console.log(images)
       axios
         .post('item/upload_item', { title, description, price, quantity, category, images })
         .then(res => {
           if (res.status === 200 && res.data.code === 0) {
-            dispatch({type:'UPLOAD_ITEM'})
+            dispatch({ type: 'UPLOAD_ITEM' })
             message.success(res.data.message)
             uploadModal.setState({
               title: '',
@@ -67,7 +66,7 @@ export const uploadItem = uploadModal => (dispatch) => {
   }
 }
 
-const uploadImages = (fileList, images) => {
+export const uploadImages = (fileList, images) => {
   fileList.forEach(file => {
     const formData = new FormData()
     formData.append('file', file)
@@ -79,7 +78,6 @@ const uploadImages = (fileList, images) => {
     return fetch(process.env.REACT_APP_CLOUDINARY_UPLOAD_URL, options)
       .then(res => res.json())
       .then(res => {
-        console.log(res)
         images.push(res.secure_url)
       })
       .catch(err => console.log(err))

@@ -12,7 +12,7 @@ router.get('/list', (req, res) => {
 
 router.get('/get_orders', (req, res) => {
   const { _id } = req.cookies
-  Order.find({ user: _id }, (req, doc) => {
+  Order.find({ user: _id }, (err, doc) => {
     return res.json({ code: 0, orderList: doc })
   })
 })
