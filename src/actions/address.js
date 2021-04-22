@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { message } from 'antd'
 
 export const openAddressModal = () => dispatch => {
   dispatch({ type: 'SET_STATE', payload: { isAddressModalVisible: true } })
