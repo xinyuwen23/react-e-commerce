@@ -19,8 +19,8 @@ class ItemList extends React.Component {
           <Card
             key={item._id}
             hoverable
-            style={{ width: 300, height: 200 }}
-            // cover={<img alt={item.title} src='' />}
+            style={{ width: 300 }}
+            cover={<img alt={item.title} src={item.images[0]} />}
             onClick={() => history.push(`/item/${item._id}`)}
           >
             <Card.Meta title={item.title} description={item.category} />
