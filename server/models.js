@@ -20,12 +20,13 @@ const userSchema = new Schema(
 
 const itemSchema = new Schema(
   {
+    seller: { type: Schema.Types.ObjectId, ref: 'user' },
     title: { type: String, required: true },
     description: { type: String, required: true },
     price: { type: Number, required: true },
     quantity: { type: Number, required: true },
     category: { type: String, required: true },
-    seller: { type: Schema.Types.ObjectId, ref: 'user' },
+    images: [{ type: String }],
   },
   { timestamps: true }
 )

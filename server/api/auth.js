@@ -40,10 +40,10 @@ router.post('/register', (req, res) => {
       password: md5Password(password),
       isSeller,
     })
-    user.save((err, user) => {
+    user.save((err, doc) => {
       const cart = new Cart({ user, price: 0, quantity: 0, items: [] })
       cart.save((err, cart) => {
-        const { email, name, isSeller, _id } = user
+        const { email, name, isSeller, _id } = doc
         const { user, price, quantity, items } = cart
         res.cookie('_id', _id)
         return res.json({

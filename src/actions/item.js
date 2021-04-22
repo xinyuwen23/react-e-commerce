@@ -14,7 +14,6 @@ export const closeUploadModal = uploadModal => dispatch => {
     quantity: '',
     category: '',
     fileList: [],
-    images: [],
   })
   dispatch({ type: 'SET_STATE', payload: { isUploadModalVisible: false } })
 }
@@ -35,19 +34,54 @@ export const getItem = _id => dispatch => {
   })
 }
 
-export const uploadItem = ({ title, description, price, quantity, category }) => dispatch => {
-  if (!title || !description || !price || !quantity || !category) {
+export const uploadItem = uploadModal => (dispatch) => {
+  const { title, description, price, quantity, category, fileList } = uploadModal.state
+  let images = []
+  if (!title || !description || !price || !quantity || !category || !fileList) {
     message.error('All fields are required')
   } else if (!validator.isNumeric(price) || price < 0) {
     message.error('Price must be numeric and larger or equal to 0')
   } else if (!validator.isInt(quantity) || quantity < 0) {
     message.error('Quantity must be integer and larger or equal to 0')
   } else {
-    axios.post('item/upload_item', { title, description, price, quantity, category }).then(res => {
-      if (res.status === 200 && res.data.code === 0) {
-        dispatch({ type: 'UPLOAD_ITEM' })
-        message.success(res.data.message)
-      }
-    })
+    uploadImages(fileList, images)
+    setTimeout(() => {
+      console.log(images)
+      axios
+        .post('item/upload_item', { title, description, price, quantity, category, images })
+        .then(res => {
+          if (res.status === 200 && res.data.code === 0) {
+            dispatch({type:'UPLOAD_ITEM'})
+            message.success(res.data.message)
+            uploadModal.setState({
+              title: '',
+              description: '',
+              price: '',
+              quantity: '',
+              category: '',
+              fileList: [],
+            })
+          }
+        })
+    }, 5000)
   }
+}
+
+const uploadImages = (fileList, images) => {
+  fileList.forEach(file => {
+    const formData = new FormData()
+    formData.append('file', file)
+    formData.append('upload_preset', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET)
+    const options = {
+      method: 'POST',
+      body: formData,
+    }
+    return fetch(process.env.REACT_APP_CLOUDINARY_UPLOAD_URL, options)
+      .then(res => res.json())
+      .then(res => {
+        console.log(res)
+        images.push(res.secure_url)
+      })
+      .catch(err => console.log(err))
+  })
 }

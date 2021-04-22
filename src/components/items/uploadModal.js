@@ -13,7 +13,6 @@ class UploadModal extends React.Component {
     quantity: '',
     category: '',
     fileList: [],
-    images: [],
   }
 
   render() {
@@ -45,7 +44,7 @@ class UploadModal extends React.Component {
           closeUploadModal(this)
         }}
         footer={[
-          <Button key='upload' type='primary' onClick={() => uploadItem(this.state)}>
+          <Button key='upload' type='primary' onClick={() => uploadItem(this)}>
             Upload
           </Button>,
         ]}
