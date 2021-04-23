@@ -6,6 +6,7 @@ import 'antd/dist/antd.css'
 
 import store from './redux'
 import App from './app'
+import './config/messageConfig'
 
 const app = (
   <Provider store={store}>

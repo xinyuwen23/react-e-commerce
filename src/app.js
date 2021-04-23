@@ -2,8 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Switch, Route } from 'react-router-dom'
 
-import './config/messageConfig'
-
 import NavBar from './components/navBar/navBar'
 import Home from './components/home'
 import LoginModal from './components/auth/loginModal'

@@ -45,7 +45,7 @@ export const getItem = _id => dispatch => {
 export const uploadItem = uploadModal => dispatch => {
   const { title, description, price, quantity, category, fileList } = uploadModal.state
   let images = []
-  if (!title || !description || !price || !quantity || !category || !fileList) {
+  if (!title || !description || !price || !quantity || !category || !fileList[0]) {
     message.error('All fields are required')
   } else if (!validator.isNumeric(price) || price < 0) {
     message.error('Price must be numeric and larger or equal to 0')
