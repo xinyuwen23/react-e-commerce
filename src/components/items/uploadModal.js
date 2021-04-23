@@ -55,11 +55,6 @@ class UploadModal extends React.Component {
             value={this.state.title}
             onChange={e => this.setState({ title: e.target.value })}
           />
-          <Input
-            placeholder='Description'
-            value={this.state.description}
-            onChange={e => this.setState({ description: e.target.value })}
-          />
           <Space>
             <Input
               placeholder='Price'
@@ -76,6 +71,12 @@ class UploadModal extends React.Component {
             placeholder='Category'
             value={this.state.category}
             onChange={e => this.setState({ category: e.target.value })}
+          />
+          <Input.TextArea
+            rows={4}
+            placeholder='Description'
+            value={this.state.description}
+            onChange={e => this.setState({ description: e.target.value })}
           />
           <Upload {...uploadProps}>
             <Button icon={<UploadOutlined />}>Select Images</Button>

@@ -16,7 +16,7 @@ class Home extends React.Component {
         <Space>
           <Button onClick={() => test()}>Test</Button>
           <Button onClick={() => openUploadModal()}>Upload</Button>
-          <Button onClick={() => history.push('/items')}>Items</Button>
+          <Button onClick={() => history.push('/all-items')}>Items</Button>
         </Space>
       </div>
     )

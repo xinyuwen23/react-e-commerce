@@ -26,6 +26,14 @@ export const getItemList = () => dispatch => {
   })
 }
 
+export const getFilteredItemList = category => dispatch => {
+  axios.post('item/filter_items', { category }).then(res => {
+    if (res.status === 200 && res.data.code === 0) {
+      dispatch({ type: 'GET_ITEM_LIST', payload: res.data.itemList })
+    }
+  })
+}
+
 export const getItem = _id => dispatch => {
   axios.post('item/get_item', { _id }).then(res => {
     if (res.status === 200 && res.data.code === 0) {

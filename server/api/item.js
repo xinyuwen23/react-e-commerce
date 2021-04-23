@@ -23,6 +23,13 @@ router.post('/get_item', (req, res) => {
   })
 })
 
+router.post('/filter_items', (req, res) => {
+  const { category } = req.body
+  Item.find({ category }, (err, items) => {
+    return res.json({ code: 0, itemList: items })
+  })
+})
+
 router.post('/upload_item', (req, res) => {
   const { _id } = req.cookies
   const { title, description, price, quantity, category, images } = req.body
