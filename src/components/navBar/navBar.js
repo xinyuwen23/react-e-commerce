@@ -7,7 +7,7 @@ import { openLoginModal, logout } from '../../actions/auth'
 
 class NavBar extends React.Component {
   render() {
-    const { history, user, openLoginModal, logout } = this.props
+    const { history, user, cart, openLoginModal, logout } = this.props
     return (
       <Menu mode='horizontal' theme='dark'>
         <Menu.Item key='home' onClick={() => history.push('/')}>
@@ -34,11 +34,9 @@ class NavBar extends React.Component {
             </Menu.Item>
           </Menu.SubMenu>
         )}
-        {user._id && (
-          <Menu.Item style={{ float: 'right' }} key='cart' onClick={() => history.push('/cart')}>
-            Cart
-          </Menu.Item>
-        )}
+        <Menu.Item style={{ float: 'right' }} key='cart' onClick={() => history.push('/cart')}>
+          Cart {cart.quantity > 0 && `(${cart.quantity})`}
+        </Menu.Item>
       </Menu>
     )
   }
@@ -46,6 +44,7 @@ class NavBar extends React.Component {
 
 const mapStateToProps = state => ({
   user: state.user,
+  cart: state.cart,
 })
 
 export default connect(mapStateToProps, { openLoginModal, logout })(withRouter(NavBar))

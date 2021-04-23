@@ -15,7 +15,7 @@ const initialState = {
   orderList: [],
   order: {},
 
-  isHelpModalVisible: true,
+  isHelpModalVisible: false,
   help: {},
   helpList: [],
 }

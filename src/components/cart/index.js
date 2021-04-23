@@ -23,7 +23,13 @@ class Cart extends React.Component {
         ) : (
           <div>Cart is empty</div>
         )}
-        <Button onClick={() => history.push('/checkout')}>Check out</Button>
+        {cart.quantity > 0 ? (
+          <Button onClick={() => history.push('/checkout')}>Check out</Button>
+        ) : (
+          <Button onClick={() => history.push('/checkout')} disabled>
+            Check out
+          </Button>
+        )}
       </Space>
     )
   }

@@ -10,20 +10,17 @@ class Orders extends React.Component {
     getOrders()
   }
   render() {
-    const { orderList } = this.props
+    const { history, orderList } = this.props
     return (
       <Space direction='vertical'>
         <h1>Order History</h1>
         <Space direction='vertical'>
-          {orderList.length ? (
+          {orderList.length &&
             orderList.map(order => (
-              <div>
+              <div key={order._id} onClick={() => history.push(`/order/${order._id}`)}>
                 Order ID: {order._id} | Price: ${order.total}
               </div>
-            ))
-          ) : (
-            <div>No order history</div>
-          )}
+            ))}
         </Space>
       </Space>
     )

@@ -16,6 +16,7 @@ import Cart from './components/cart'
 import AddressModal from './components/address/addressModal'
 import AddressBook from './components/address/addressBook'
 import Orders from './components/orders/orders'
+import Order from './components/orders/order'
 import Checkout from './components/orders/checkout'
 import CheckoutDone from './components/orders/checkoutDone'
 import HelpModal from './components/help/helpModal'
@@ -31,7 +32,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {/* OtherComponents */}
         <NavBar />
         <LoginModal />
         <RegisterModal />
@@ -46,6 +46,7 @@ class App extends React.Component {
             <Route exact path='/cart' component={Cart} />
             <Route exact path='/addressbook' component={AddressBook} />
             <Route exact path='/orders' component={Orders} />
+            <Route exact path='/order/:_id' component={Order} />
             <Route exact path='/checkout' component={Checkout} />
             <Route exact path='/checkout-done' component={CheckoutDone} />
             <Route exact path='/' component={Home} />

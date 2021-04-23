@@ -27,8 +27,8 @@ export const getHelp = () => dispatch => {
   })
 }
 
-export const createHelp = helpModal => dispatch => {
-  const { order, action, description, fileList } = helpModal.state
+export const createHelp = (helpModal, order) => dispatch => {
+  const { action, description, fileList } = helpModal.state
   let images = []
   uploadImages(fileList, images)
   setTimeout(() => {

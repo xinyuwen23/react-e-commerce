@@ -13,7 +13,7 @@ class HelpModal extends React.Component {
   }
 
   render() {
-    const { isHelpModalVisible, closeHelpModal, createHelp } = this.props
+    const { isHelpModalVisible, order, closeHelpModal, createHelp } = this.props
     const uploadProps = {
       onRemove: file => {
         this.setState(state => {
@@ -41,13 +41,12 @@ class HelpModal extends React.Component {
           closeHelpModal(this)
         }}
         footer={[
-          <Button key='send' type='primary' onClick={() => createHelp(this)}>
+          <Button key='send' type='primary' onClick={() => createHelp(this, order._id)}>
             Send
           </Button>,
         ]}
       >
         <Space style={{ width: '100%' }} direction='vertical'>
-          <div>Order: </div>
           <Input
             placeholder='Action'
             value={this.state.action}
@@ -69,6 +68,7 @@ class HelpModal extends React.Component {
 
 const mapStateToProps = state => ({
   isHelpModalVisible: state.isHelpModalVisible,
+  order: state.order,
 })
 
 export default connect(mapStateToProps, { closeHelpModal, createHelp })(HelpModal)
