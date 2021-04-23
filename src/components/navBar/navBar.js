@@ -13,6 +13,11 @@ class NavBar extends React.Component {
         <Menu.Item key='home' onClick={() => history.push('/')}>
           Home
         </Menu.Item>
+        <Menu.SubMenu key='category' title='Category'>
+          <Menu.ItemGroup key='groceries' title='Groceries'>
+            <Menu.Item>Soft Drinks</Menu.Item>
+          </Menu.ItemGroup>
+        </Menu.SubMenu>
         {!user._id && (
           <Menu.Item style={{ float: 'right' }} key='login' onClick={() => openLoginModal()}>
             Login
