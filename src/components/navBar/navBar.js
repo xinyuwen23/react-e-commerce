@@ -19,7 +19,7 @@ class NavBar extends React.Component {
             <Menu.Item
               key='soft_drinks'
               onClick={() => {
-                history.push('/soft-drinks')
+                history.push('/category/soft-drinks')
                 getFilteredItemList('soft-drinks')
               }}
             >
@@ -28,7 +28,7 @@ class NavBar extends React.Component {
             <Menu.Item
               key='tea'
               onClick={() => {
-                history.push('/tea')
+                history.push('/category/tea')
                 getFilteredItemList('tea')
               }}
             >

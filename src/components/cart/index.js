@@ -7,7 +7,7 @@ class Cart extends React.Component {
     const { history, cart } = this.props
     return (
       <Space direction='vertical'>
-        <div>Cart</div>
+        <h1>Cart</h1>
         {cart.items.length ? (
           <Space direction='vertical'>
             {cart.items.map(item => (

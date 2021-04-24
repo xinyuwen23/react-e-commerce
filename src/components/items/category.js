@@ -25,7 +25,7 @@ class Category extends React.Component {
             cover={<img alt={item.title} src={item.images[0]} />}
             onClick={() => history.push(`/item/${item._id}`)}
           >
-            <Card.Meta title={item.title} description={item.category} />
+            <Card.Meta title={item.title} description={`$${item.price}`} />
           </Card>
         ))}
       </Space>

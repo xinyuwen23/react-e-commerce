@@ -41,7 +41,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path='/profile' component={Profile} />
             <Route exact path='/all-items' component={ItemList} />
-            <Route exact path='/:category' component={Category} />
+            <Route exact path='/category/:category' component={Category} />
             <Route exact path='/item/:_id' component={Item} />
             <Route exact path='/cart' component={Cart} />
             <Route exact path='/addressbook' component={AddressBook} />
