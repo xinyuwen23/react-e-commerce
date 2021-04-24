@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Modal, Space, Input, Button, Upload } from 'antd'
+import { Modal, Space, Input, Button, Upload, Select } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
 
 import { closeUploadModal, uploadItem } from '../../actions/item'
@@ -67,17 +67,20 @@ class UploadModal extends React.Component {
               onChange={e => this.setState({ quantity: e.target.value })}
             />
           </Space>
-          <Input
-            placeholder='Category'
-            value={this.state.category}
-            onChange={e => this.setState({ category: e.target.value })}
-          />
           <Input.TextArea
             rows={4}
             placeholder='Description'
             value={this.state.description}
             onChange={e => this.setState({ description: e.target.value })}
           />
+          <Select
+            style={{ width: '100%' }}
+            placeholder='Category'
+            onChange={value => this.setState({ category: value })}
+          >
+            <Select.Option value='soft-drinks'>Soft Drinks</Select.Option>
+            <Select.Option value='tea'>Tea</Select.Option>
+          </Select>
           <Upload {...uploadProps}>
             <Button icon={<UploadOutlined />}>Select Images</Button>
           </Upload>

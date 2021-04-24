@@ -4,18 +4,36 @@ import { withRouter } from 'react-router-dom'
 import { Menu } from 'antd'
 
 import { openLoginModal, logout } from '../../actions/auth'
+import { getFilteredItemList } from '../../actions/item'
 
 class NavBar extends React.Component {
   render() {
-    const { history, user, cart, openLoginModal, logout } = this.props
+    const { history, user, cart, openLoginModal, logout, getFilteredItemList } = this.props
     return (
       <Menu mode='horizontal' theme='dark'>
         <Menu.Item key='home' onClick={() => history.push('/')}>
           Home
         </Menu.Item>
         <Menu.SubMenu key='category' title='Category'>
-          <Menu.ItemGroup key='groceries' title='Groceries'>
-            <Menu.Item>Soft Drinks</Menu.Item>
+          <Menu.ItemGroup key='beverages' title='Beverages'>
+            <Menu.Item
+              key='soft_drinks'
+              onClick={() => {
+                history.push('/soft-drinks')
+                getFilteredItemList('soft-drinks')
+              }}
+            >
+              Soft Drinks
+            </Menu.Item>
+            <Menu.Item
+              key='tea'
+              onClick={() => {
+                history.push('/tea')
+                getFilteredItemList('tea')
+              }}
+            >
+              Tea
+            </Menu.Item>
           </Menu.ItemGroup>
         </Menu.SubMenu>
         {!user._id && (
@@ -52,4 +70,6 @@ const mapStateToProps = state => ({
   cart: state.cart,
 })
 
-export default connect(mapStateToProps, { openLoginModal, logout })(withRouter(NavBar))
+export default connect(mapStateToProps, { openLoginModal, logout, getFilteredItemList })(
+  withRouter(NavBar)
+)

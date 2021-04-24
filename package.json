@@ -5,7 +5,7 @@
   "scripts": {
     "start": "cd server && npm start",
     "build": "react-scripts build && (cd server && npm install)",
-    "both": "concurrently \"nodemon server\" \"react-scripts start\"",
+    "app": "concurrently \"nodemon server\" \"react-scripts start\"",
     "client": "react-scripts start",
     "server": "nodemon server",
     "test": "react-scripts test",

@@ -15,11 +15,12 @@ class Category extends React.Component {
   render() {
     const { history, itemList } = this.props
     return (
-      <Space style={{ width: '100%' }} wrap>
+      <Space style={{ width: '100%' }} wrap size='large'>
         {itemList.map(item => (
           <Card
             key={item._id}
             hoverable
+            bordered={false}
             style={{ width: 300 }}
             cover={<img alt={item.title} src={item.images[0]} />}
             onClick={() => history.push(`/item/${item._id}`)}
