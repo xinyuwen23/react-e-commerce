@@ -42,7 +42,7 @@ class NavBar extends React.Component {
           </Menu.Item>
         )}
         {user._id && (
-          <Menu.SubMenu style={{ float: 'right' }} key='account' title='Account'>
+          <Menu.SubMenu style={{ float: 'right' }} key='account' title={`Hello, ${user.name}`}>
             <Menu.Item key='profile' onClick={() => history.push('/profile')}>
               Profile
             </Menu.Item>
