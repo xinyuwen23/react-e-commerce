@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { HashRouter } from 'react-router-dom'
 import 'antd/dist/antd.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 import store from './redux'
 import App from './app'
