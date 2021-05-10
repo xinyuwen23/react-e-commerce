@@ -9,14 +9,13 @@ import { openUploadModal } from '../../actions/item'
 
 class Home extends React.Component {
   render() {
-    const { history, test, openUploadModal } = this.props
+    const { test, openUploadModal } = this.props
     return (
       <div>
         <div>Home Page</div>
         <Space>
           <Button onClick={() => test()}>Test</Button>
           <Button onClick={() => openUploadModal()}>Upload</Button>
-          <Button onClick={() => history.push('/all-items')}>Items</Button>
         </Space>
       </div>
     )

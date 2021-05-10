@@ -9,8 +9,8 @@ import RegisterModal from './components/auth/registerModal'
 import Profile from './components/account/profile'
 import UploadModal from './components/items/uploadModal'
 import Item from './components/items/item'
-import ItemList from './components/items/itemList'
 import Category from './components/items/category'
+import CategoryList from './components/items/categoryList'
 import Cart from './components/cart'
 import AddressModal from './components/address/addressModal'
 import AddressBook from './components/address/addressBook'
@@ -19,6 +19,7 @@ import Order from './components/orders/order'
 import Checkout from './components/orders/checkout'
 import CheckoutDone from './components/orders/checkoutDone'
 import HelpModal from './components/help/helpModal'
+import Seller from './components/seller'
 
 import { getUser } from './actions/auth'
 
@@ -40,8 +41,8 @@ class App extends React.Component {
         <div>
           <Switch>
             <Route exact path='/profile' component={Profile} />
-            <Route exact path='/all-items' component={ItemList} />
             <Route exact path='/category/:category' component={Category} />
+            <Route exact path='/category' component={CategoryList} />
             <Route exact path='/item/:_id' component={Item} />
             <Route exact path='/cart' component={Cart} />
             <Route exact path='/addressbook' component={AddressBook} />
@@ -49,6 +50,7 @@ class App extends React.Component {
             <Route exact path='/order/:_id' component={Order} />
             <Route exact path='/checkout' component={Checkout} />
             <Route exact path='/checkout-done' component={CheckoutDone} />
+            <Route exact path='/seller' component={Seller} />
             <Route exact path='/' component={Home} />
           </Switch>
         </div>

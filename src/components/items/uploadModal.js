@@ -78,8 +78,9 @@ class UploadModal extends React.Component {
             placeholder='Category'
             onChange={value => this.setState({ category: value })}
           >
-            <Select.Option value='soft-drinks'>Soft Drinks</Select.Option>
-            <Select.Option value='tea'>Tea</Select.Option>
+            <Select.Option value='Household'>Household</Select.Option>
+            <Select.Option value='Drinks'>Drinks</Select.Option>
+            <Select.Option value='COVID-19'>COVID-19</Select.Option>
           </Select>
           <Upload {...uploadProps}>
             <Button icon={<UploadOutlined />}>Select Images</Button>

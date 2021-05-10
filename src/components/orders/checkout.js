@@ -54,7 +54,7 @@ class Checkout extends React.Component {
           value={this.state.shippingCost}
         >
           <Radio style={radioStyle} value={15}>
-            2-Days Delivery ($15)
+            2-Days Delivery (+$15)
           </Radio>
           <Radio style={radioStyle} value={0}>
             Slow Delivery (Free)
