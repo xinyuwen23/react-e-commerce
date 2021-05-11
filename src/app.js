@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Switch, Route } from 'react-router-dom'
 
 import NavBar from './components/navBar/navBar'
+import Footer from './components/navBar/footer'
 import Home from './components/home'
 import LoginModal from './components/auth/loginModal'
 import RegisterModal from './components/auth/registerModal'
@@ -40,7 +41,7 @@ class App extends React.Component {
         <UploadModal />
         <AddressModal />
         <HelpModal />
-        <div>
+        <div id='main'>
           <Switch>
             <Route exact path='/profile' component={Profile} />
             <Route exact path='/category/:category' component={Category} />
@@ -56,6 +57,7 @@ class App extends React.Component {
             <Route exact path='/' component={Home} />
           </Switch>
         </div>
+        <Footer />
       </div>
     )
   }
