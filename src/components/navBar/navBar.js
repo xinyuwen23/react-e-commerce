@@ -60,16 +60,23 @@ class NavBar extends React.Component {
             icon={<UserOutlined />}
             title={user.name}
           >
-            {accountDropdown.map(option => (
-              <Menu.Item key={option.key} onClick={() => history.push(`/${option.key}`)}>
-                {option.title}
+            {user.isAdmin && (
+              <Menu.Item key='admin' onClick={() => history.push('/admin')}>
+                Admin
               </Menu.Item>
-            ))}
+            )}
             {user.isSeller && (
               <Menu.Item key='seller' onClick={() => history.push('/seller')}>
                 Seller
               </Menu.Item>
             )}
+            {(user.isSeller || user.isAdmin) && <Menu.Divider />}
+            {accountDropdown.map(option => (
+              <Menu.Item key={option.key} onClick={() => history.push(`/${option.key}`)}>
+                {option.title}
+              </Menu.Item>
+            ))}
+
             <Menu.Item key='logout' onClick={() => logout(history)}>
               Logout
             </Menu.Item>
