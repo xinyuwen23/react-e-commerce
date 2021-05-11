@@ -28,6 +28,7 @@ router.post('/get_order', (req, res) => {
 router.post('/create_order', (req, res) => {
   const { _id } = req.cookies
   const { price, items, shippingCost, address } = req.body
+  let itemProcessed = 0
   const total = shippingCost + price
   const order = new Order({
     user: _id,
@@ -38,17 +39,21 @@ router.post('/create_order', (req, res) => {
     total,
   })
   order.save(() => {
-    items.forEach(i => {
-      Item.findOne({ _id: i.item }, (err, item) => {
-        updateItem(item, i.quantity)
-        Item.findOneAndUpdate({ _id: i.item }, item)
-      })
-    })
     Order.find({ user: _id }, (req, orderList) => {
       Cart.findOne({ user: _id }, (err, cart) => {
         emptyCart(cart)
         Cart.findOneAndUpdate({ user: _id }, cart, { new: true }, (err, newCart) => {
-          return res.json({ code: 0, cart: newCart, orderList })
+          items.forEach(i => {
+            Item.findOne({ _id: i.item }, (err, item) => {
+              updateItem(item, i.quantity)
+              Item.findOneAndUpdate({ _id: i.item }, item, { new: true }, (err, newItem) => {
+                itemProcessed++
+                if (itemProcessed === items.length) {
+                  return res.json({ code: 0, cart: newCart, orderList })
+                }
+              })
+            })
+          })
         })
       })
     })

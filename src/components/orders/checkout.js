@@ -53,8 +53,8 @@ class Checkout extends React.Component {
           onChange={e => this.setState({ shippingCost: e.target.value })}
           value={this.state.shippingCost}
         >
-          <Radio style={radioStyle} value={15}>
-            2-Days Delivery (+$15)
+          <Radio style={radioStyle} value={9.99}>
+            2-Days Delivery (+$9.99)
           </Radio>
           <Radio style={radioStyle} value={0}>
             Slow Delivery (Free)
@@ -76,13 +76,13 @@ class Checkout extends React.Component {
           <h2>Order Summary</h2>
           <p>Items: ${cart.price}</p>
           <p>Shipping: ${this.state.shippingCost}</p>
-          <h4>Order Total: ${cart.price + this.state.shippingCost}</h4>
+          <h4>Order Total: ${(cart.price + this.state.shippingCost).toFixed(2)}</h4>
         </Space>
         <Button
           onClick={() =>
             createOrder({
               history,
-              price: cart.price + this.state.shippingCost,
+              price: (cart.price + this.state.shippingCost).toFixed(2),
               items: cart.items,
               shippingCost: this.state.shippingCost,
               address: this.state.address,

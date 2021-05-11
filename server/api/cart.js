@@ -53,6 +53,7 @@ const updateCart = (cart, item, quantity, price, title) => {
   console.log(item)
   cart.quantity += quantity
   cart.price += price * quantity
+  cart.price.toFixed(2)
   const items = cart.items
   const targetItem = items.find(i => i.item == item)
   const targetIndex = items.indexOf(targetItem)
