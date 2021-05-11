@@ -3,6 +3,7 @@ const router = express.Router()
 
 const Order = require('../models').Order
 const Cart = require('../models').Cart
+const Item = require('../models').Item
 
 router.get('/list', (req, res) => {
   Order.find({}, (err, address) => {
@@ -37,6 +38,12 @@ router.post('/create_order', (req, res) => {
     total,
   })
   order.save(() => {
+    items.forEach(i => {
+      Item.findOne({ _id: i.item }, (err, item) => {
+        updateItem(item, i.quantity)
+        Item.findOneAndUpdate({ _id: i.item }, item)
+      })
+    })
     Order.find({ user: _id }, (req, orderList) => {
       Cart.findOne({ user: _id }, (err, cart) => {
         emptyCart(cart)
@@ -53,6 +60,12 @@ const emptyCart = cart => {
   cart.price = 0
   cart.items = []
   return cart
+}
+
+const updateItem = (item, quantity) => {
+  item.quantity -= quantity
+  item.sold += quantity
+  return item
 }
 
 module.exports = router

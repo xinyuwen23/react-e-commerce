@@ -18,10 +18,10 @@ export const closeUploadModal = uploadModal => dispatch => {
   dispatch({ type: 'SET_STATE', payload: { isUploadModalVisible: false } })
 }
 
-export const getItemList = () => dispatch => {
+export const getAllItems = () => dispatch => {
   axios.get('item/list').then(res => {
     if (res.status === 200) {
-      dispatch({ type: 'GET_ITEM_LIST', payload: res.data })
+      dispatch({ type: 'GET_ALL_ITEMS', payload: res.data })
     }
   })
 }

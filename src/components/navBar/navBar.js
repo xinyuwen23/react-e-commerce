@@ -16,7 +16,12 @@ import { getFilteredItemList } from '../../actions/item'
 class NavBar extends React.Component {
   render() {
     const { history, user, cart, openLoginModal, logout, getFilteredItemList } = this.props
-    const categoryList = [{ name: 'COVID-19' }, { name: 'Drinks' }, { name: 'Household' }]
+    const categoryDropdown = [{ name: 'COVID-19' }, { name: 'Drinks' }, { name: 'Household' }]
+    const accountDropdown = [
+      { key: 'profile', title: 'Profile' },
+      { key: 'orders', title: 'Order History' },
+      { key: 'addressbook', title: 'Address Book' },
+    ]
     return (
       <Menu mode='horizontal' theme='dark'>
         <Menu.Item key='home' onClick={() => history.push('/')}>
@@ -29,7 +34,7 @@ class NavBar extends React.Component {
           title='Category'
           onTitleClick={() => history.push('/category')}
         >
-          {categoryList.map(category => (
+          {categoryDropdown.map(category => (
             <Menu.Item
               key={category.name}
               onClick={() => {
@@ -41,6 +46,7 @@ class NavBar extends React.Component {
             </Menu.Item>
           ))}
         </Menu.SubMenu>
+
         {!user._id && (
           <Menu.Item style={{ float: 'right' }} key='login' onClick={() => openLoginModal()}>
             <LoginOutlined />
@@ -54,15 +60,16 @@ class NavBar extends React.Component {
             icon={<UserOutlined />}
             title={user.name}
           >
-            <Menu.Item key='profile' onClick={() => history.push('/profile')}>
-              Profile
-            </Menu.Item>
-            <Menu.Item key='orders' onClick={() => history.push('/orders')}>
-              Order History
-            </Menu.Item>
-            <Menu.Item key='addressbook' onClick={() => history.push('/addressbook')}>
-              Address Book
-            </Menu.Item>
+            {accountDropdown.map(option => (
+              <Menu.Item key={option.key} onClick={() => history.push(`/${option.key}`)}>
+                {option.title}
+              </Menu.Item>
+            ))}
+            {user.isSeller && (
+              <Menu.Item key='seller' onClick={() => history.push('/seller')}>
+                Seller
+              </Menu.Item>
+            )}
             <Menu.Item key='logout' onClick={() => logout(history)}>
               Logout
             </Menu.Item>

@@ -21,23 +21,25 @@ class Category extends React.Component {
       { path: `/category/${category}`, breadcrumbName: category },
     ]
     return (
-      <Space style={{ padding: '10px 50px 30px 50px' }} direction='vertical'>
+      <div>
         <PageHeader title={category.toUpperCase()} breadcrumb={{ routes }} />
-        <Space style={{ width: '100%' }} wrap size='large'>
-          {itemList.map(item => (
-            <Card
-              key={item._id}
-              hoverable
-              style={{ width: 260 }}
-              cover={<img style={{ padding: 10 }} alt={item.title} src={item.images[0]} />}
-              onClick={() => history.push(`/item/${item._id}`)}
-            >
-              <p id='itemTitle'>{item.title}</p>
-              <Card.Meta title={`$${item.price}`} />
-            </Card>
-          ))}
+        <Space style={{ padding: '10px 50px 30px 50px' }} direction='vertical'>
+          <Space style={{ width: '100%' }} wrap size='large'>
+            {itemList.map(item => (
+              <Card
+                key={item._id}
+                hoverable
+                style={{ width: 260 }}
+                cover={<img style={{ padding: 10 }} alt={item.title} src={item.images[0]} />}
+                onClick={() => history.push(`/item/${item._id}`)}
+              >
+                <p id='itemTitle'>{item.title}</p>
+                <Card.Meta title={`$${item.price}`} />
+              </Card>
+            ))}
+          </Space>
         </Space>
-      </Space>
+      </div>
     )
   }
 }

@@ -22,11 +22,13 @@ import HelpModal from './components/help/helpModal'
 import Seller from './components/seller'
 
 import { getUser } from './actions/auth'
+import { getAllItems } from './actions/item'
 
 class App extends React.Component {
   componentDidMount() {
-    const { getUser } = this.props
+    const { getUser, getAllItems } = this.props
     getUser()
+    getAllItems()
   }
 
   render() {
@@ -61,4 +63,4 @@ class App extends React.Component {
 
 const mapStateToProps = state => ({})
 
-export default connect(mapStateToProps, { getUser })(App)
+export default connect(mapStateToProps, { getUser, getAllItems })(App)

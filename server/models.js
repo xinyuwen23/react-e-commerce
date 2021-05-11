@@ -27,6 +27,7 @@ const itemSchema = new Schema(
     price: { type: Number, required: true },
     quantity: { type: Number, required: true },
     category: { type: String, required: true },
+    sold: { type: Number, default: 0 },
     images: [{ type: String }],
   },
   { timestamps: true }

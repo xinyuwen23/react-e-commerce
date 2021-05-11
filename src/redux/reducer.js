@@ -5,6 +5,7 @@ const initialState = {
 
   isUploadModalVisible: false,
   item: {},
+  allItems: {},
   itemList: [],
 
   cart: { items: [] },
@@ -36,6 +37,9 @@ const reducer = (state = initialState, action) => {
 
     case 'LOGOUT':
       return { ...state, user: {}, cart: { items: [] } }
+
+    case 'GET_ALL_ITEMS':
+      return { ...state, allItems: action.payload }
 
     case 'GET_ITEM_LIST':
       return { ...state, itemList: action.payload }

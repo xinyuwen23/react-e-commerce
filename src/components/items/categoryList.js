@@ -15,22 +15,24 @@ class CategoryList extends React.Component {
       { title: 'Household', icon: require('../../static/img/household.png').default },
     ]
     return (
-      <Space style={{ padding: '10px 50px 30px 50px' }} direction='vertical'>
+      <div>
         <PageHeader title='CATEGORY' breadcrumb={{ routes }} />
-        <Space style={{ width: '100%' }} wrap size='large'>
-          {categoryList.map(category => (
-            <Card
-              key={category.title}
-              hoverable
-              style={{ width: 350 }}
-              cover={<img style={{ padding: 10 }} alt={category.title} src={category.icon} />}
-              onClick={() => history.push(`/category/${category.title}`)}
-            >
-              <Card.Meta title={category.title} />
-            </Card>
-          ))}
+        <Space style={{ padding: '10px 50px 30px 50px' }} direction='vertical'>
+          <Space style={{ width: '100%' }} wrap size='large'>
+            {categoryList.map(category => (
+              <Card
+                key={category.title}
+                hoverable
+                style={{ width: 350 }}
+                cover={<img style={{ padding: 10 }} alt={category.title} src={category.icon} />}
+                onClick={() => history.push(`/category/${category.title}`)}
+              >
+                <Card.Meta title={category.title} />
+              </Card>
+            ))}
+          </Space>
         </Space>
-      </Space>
+      </div>
     )
   }
 }
