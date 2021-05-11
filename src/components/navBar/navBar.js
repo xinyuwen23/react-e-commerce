@@ -16,6 +16,7 @@ import { getFilteredItemList } from '../../actions/item'
 class NavBar extends React.Component {
   render() {
     const { history, user, cart, openLoginModal, logout, getFilteredItemList } = this.props
+    const categoryList = [{ name: 'COVID-19' }, { name: 'Drinks' }, { name: 'Household' }]
     return (
       <Menu mode='horizontal' theme='dark'>
         <Menu.Item key='home' onClick={() => history.push('/')}>
@@ -28,33 +29,17 @@ class NavBar extends React.Component {
           title='Category'
           onTitleClick={() => history.push('/category')}
         >
-          <Menu.Item
-            key='household'
-            onClick={() => {
-              history.push('/category/Household')
-              getFilteredItemList('Household')
-            }}
-          >
-            Household
-          </Menu.Item>
-          <Menu.Item
-            key='drinks'
-            onClick={() => {
-              history.push('/category/Drinks')
-              getFilteredItemList('Drinks')
-            }}
-          >
-            Drinks
-          </Menu.Item>
-          <Menu.Item
-            key='covid-19'
-            onClick={() => {
-              history.push('/category/COVID-19')
-              getFilteredItemList('COVID-19')
-            }}
-          >
-            COVID-19
-          </Menu.Item>
+          {categoryList.map(category => (
+            <Menu.Item
+              key={category.name}
+              onClick={() => {
+                history.push(`/category/${category.name}`)
+                getFilteredItemList(category.name)
+              }}
+            >
+              {category.name}
+            </Menu.Item>
+          ))}
         </Menu.SubMenu>
         {!user._id && (
           <Menu.Item style={{ float: 'right' }} key='login' onClick={() => openLoginModal()}>
