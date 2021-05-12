@@ -6,8 +6,8 @@ class Profile extends React.Component {
   render() {
     const { user } = this.props
     return (
-      <Space direction='vertical'>
-        <div>Profile</div>
+      <Space style={{ padding: '30px 60px 30px 60px' }} direction='vertical' size='large'>
+        <h1>Profile</h1>
         <div>Email: {user.email}</div>
         <div>Name: {user.name}</div>
       </Space>

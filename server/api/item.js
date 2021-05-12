@@ -16,9 +16,12 @@ router.post('/get_item', (req, res) => {
   const { _id } = req.body
   Item.findOne({ _id }, (err, item) => {
     User.findOne({ _id: item.seller }, (err, user) => {
-      const { _id, title, description, price, category } = item
+      const { _id, title, description, price, category, images, quantity, sold } = item
       const seller = user.name
-      return res.json({ code: 0, item: { _id, title, description, price, category, seller } })
+      return res.json({
+        code: 0,
+        item: { _id, title, description, price, category, images, quantity, sold, seller },
+      })
     })
   })
 })
