@@ -33,12 +33,12 @@ class Item extends React.Component {
             <Col style={{ padding: '0px 70px 0px 90px' }} span={12}>
               {item.images && <Image width='100%' src={item.images[0]} />}
             </Col>
-            <Col style={{ padding: '40px 20px 0px 10px' }} span={12}>
+            <Col style={{ padding: '60px 20px 0px 10px' }} span={12}>
               <Space direction='vertical'>
                 <div style={{ fontSize: 24, fontWeight: 'bold' }}>{item.title}</div>
                 <Space direction='vertical' size='large'>
                   <div style={{ fontSize: 16 }}>Seller: {item.seller}</div>
-                  <div style={{ fontSize: 30, fontWeight: 'bold' }}>${item.price}</div>
+                  <div style={{ fontSize: 32, fontWeight: 'bold' }}>${item.price}</div>
                   <div>
                     <InputNumber
                       size='large'
@@ -59,7 +59,7 @@ class Item extends React.Component {
               </Space>
             </Col>
           </Row>
-          <Space direction='vertical' size='large'>
+          <Space style={{ padding: '0px 100px 0px 100px' }} direction='vertical' size='large'>
             <div style={{ fontSize: 24, fontWeight: 'bold' }}>About This Item</div>
             <ReactMarkdown>{item.description}</ReactMarkdown>
           </Space>
