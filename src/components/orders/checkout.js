@@ -79,7 +79,7 @@ class Checkout extends React.Component {
           <h4>Order Total: ${(cart.price + this.state.shippingCost).toFixed(2)}</h4>
         </Space>
         <Button
-          onClick={() =>
+          onClick={() => {
             createOrder({
               history,
               price: (cart.price + this.state.shippingCost).toFixed(2),
@@ -87,7 +87,7 @@ class Checkout extends React.Component {
               shippingCost: this.state.shippingCost,
               address: this.state.address,
             })
-          }
+          }}
         >
           Place Order
         </Button>

@@ -1,3 +1,4 @@
+import { message } from 'antd'
 import axios from 'axios'
 
 export const getOrders = () => dispatch => {
@@ -16,14 +17,17 @@ export const getOrder = _id => dispatch => {
   })
 }
 
-export const createOrder = ({ history, price, items, shippingCost, address }) => dispatch => {
-  axios.post('order/create_order', { price, items, shippingCost, address }).then(res => {
-    if (res.status === 200 && res.data.code === 0) {
-      dispatch({
-        type: 'CREATE_ORDER',
-        payload: { orderList: res.data.orderList, cart: res.data.cart },
-      })
-      history.push('/checkout-done')
-    }
-  })
-}
+export const createOrder =
+  ({ history, price, items, shippingCost, address }) =>
+  dispatch => {
+    axios.post('order/create_order', { price, items, shippingCost, address }).then(res => {
+      if (res.status === 200 && res.data.code === 0) {
+        dispatch({
+          type: 'CREATE_ORDER',
+          payload: { orderList: res.data.orderList, cart: res.data.cart },
+        })
+        history.push('/orders')
+        message.success('Thank you! Your order has been placed.')
+      }
+    })
+  }

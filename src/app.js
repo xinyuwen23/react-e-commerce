@@ -18,7 +18,6 @@ import AddressBook from './components/address/addressBook'
 import Orders from './components/orders/orders'
 import Order from './components/orders/order'
 import Checkout from './components/orders/checkout'
-import CheckoutDone from './components/orders/checkoutDone'
 import HelpModal from './components/help/helpModal'
 import Seller from './components/seller'
 
@@ -52,7 +51,6 @@ class App extends React.Component {
             <Route exact path='/orders' component={Orders} />
             <Route exact path='/order/:_id' component={Order} />
             <Route exact path='/checkout' component={Checkout} />
-            <Route exact path='/checkout-done' component={CheckoutDone} />
             <Route exact path='/seller' component={Seller} />
             <Route exact path='/' component={Home} />
           </Switch>
