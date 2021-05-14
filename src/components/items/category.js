@@ -22,8 +22,9 @@ class Category extends React.Component {
     ]
     return (
       <div>
-        <PageHeader title={category.toUpperCase()} breadcrumb={{ routes }} />
+        <PageHeader breadcrumb={{ routes }} />
         <Space style={{ padding: '10px 50px 30px 50px' }} direction='vertical'>
+          <h1>{category.toUpperCase()}</h1>
           <Space style={{ width: '100%' }} wrap size='large'>
             {itemList.map(item => (
               <Card

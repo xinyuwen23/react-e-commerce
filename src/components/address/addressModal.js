@@ -11,7 +11,7 @@ class AddressModal extends React.Component {
     city: '',
     state: '',
     zip: '',
-    region: '',
+    region: 'United States',
   }
 
   render() {
@@ -23,7 +23,7 @@ class AddressModal extends React.Component {
         onCancel={() => closeAddressModal()}
         footer={[
           <Button key='add' type='primary' onClick={() => addAddress(this.state)}>
-            Add
+            Add Address
           </Button>,
         ]}
       >
@@ -56,11 +56,7 @@ class AddressModal extends React.Component {
               value={this.state.zip}
               onChange={e => this.setState({ zip: e.target.value })}
             />
-            <Input
-              placeholder='Region'
-              value={this.state.region}
-              onChange={e => this.setState({ region: e.target.value })}
-            />
+            <Input placeholder='Region' value={this.state.region} disabled />
           </Space>
         </Space>
       </Modal>

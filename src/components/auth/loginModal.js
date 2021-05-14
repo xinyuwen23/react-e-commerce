@@ -22,10 +22,6 @@ class LoginModal extends React.Component {
           <Button key='register' onClick={() => openRegisterModal()}>
             Create a new account
           </Button>,
-          <Button key='google'>
-            <GoogleSquareFilled style={{ color: 'blue' }} />
-            Login with Google
-          </Button>,
           <Button key='login' type='primary' onClick={() => login(this.state)}>
             Login
           </Button>,

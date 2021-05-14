@@ -16,8 +16,9 @@ class CategoryList extends React.Component {
     ]
     return (
       <div>
-        <PageHeader title='CATEGORY' breadcrumb={{ routes }} />
+        <PageHeader breadcrumb={{ routes }} />
         <Space style={{ padding: '10px 50px 30px 50px' }} direction='vertical'>
+          <h1>CATEGORY</h1>
           <Space style={{ width: '100%' }} wrap size='large'>
             {categoryList.map(category => (
               <Card

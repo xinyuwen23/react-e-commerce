@@ -83,7 +83,12 @@ class Cart extends React.Component {
                   <Button size='large' onClick={() => emptyCart()}>
                     Empty Cart
                   </Button>
-                  <Button type='primary' size='large' onClick={() => history.push('/checkout')}>
+                  <Button
+                    style={{ width: 200 }}
+                    type='primary'
+                    size='large'
+                    onClick={() => history.push('/checkout')}
+                  >
                     Check out
                   </Button>
                 </Space>
