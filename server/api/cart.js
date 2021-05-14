@@ -26,11 +26,11 @@ router.post('/update_cart', (req, res) => {
   Item.findOne({ _id: item }, (err, target) => {
     const price = target.price
     const title = target.title
+    const image = target.images[0]
     Cart.findOne({ user: _id }, (err, cart) => {
-      updateCart(cart, item, quantity, price, title)
+      updateCart(cart, item, quantity, price, title, image)
       Cart.findOneAndUpdate({ user: _id }, cart, { new: true }, (err, doc) => {
-        const { _id, user, price, quantity, items } = doc
-        return res.json({ code: 0, cart: { _id, user, price, quantity, items } })
+        return res.json({ code: 0, cart: doc })
       })
     })
   })
@@ -49,11 +49,9 @@ router.get('/empty_cart', (req, res) => {
 
 // helper functions
 
-const updateCart = (cart, item, quantity, price, title) => {
-  console.log(item)
+const updateCart = (cart, item, quantity, price, title, image) => {
   cart.quantity += quantity
   cart.price += price * quantity
-  cart.price.toFixed(2)
   const items = cart.items
   const targetItem = items.find(i => i.item == item)
   const targetIndex = items.indexOf(targetItem)
@@ -63,7 +61,7 @@ const updateCart = (cart, item, quantity, price, title) => {
     items.splice(targetIndex, 1, targetItem)
     return cart
   } else {
-    const newItem = { item, quantity, price, title }
+    const newItem = { item, quantity, price, title, image }
     items.push(newItem)
     return cart
   }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Space, Button, PageHeader, Image, InputNumber, Row, Col } from 'antd'
+import { message, Space, Button, PageHeader, Image, InputNumber, Row, Col } from 'antd'
 import ReactMarkdown from 'react-markdown'
 
 import { getItem } from '../../actions/item'
@@ -43,7 +43,7 @@ class Item extends React.Component {
                     <InputNumber
                       size='large'
                       min={1}
-                      max={10}
+                      max={9}
                       value={this.state.quantity}
                       onChange={value => this.setState({ quantity: value })}
                     />
@@ -51,7 +51,10 @@ class Item extends React.Component {
                   <Button
                     type='primary'
                     size='large'
-                    onClick={() => updateCart(item._id, this.state.quantity)}
+                    onClick={() => {
+                      updateCart(item._id, this.state.quantity)
+                      message.success('Added to Cart')
+                    }}
                   >
                     Add to Cart
                   </Button>

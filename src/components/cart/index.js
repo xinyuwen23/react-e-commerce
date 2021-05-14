@@ -1,55 +1,99 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Space, Button, List } from 'antd'
+import { Space, Button, PageHeader, List, InputNumber } from 'antd'
 
-import { emptyCart } from '../../actions/cart'
+import { updateCart, emptyCart } from '../../actions/cart'
 
 class Cart extends React.Component {
   render() {
-    const { history, cart, emptyCart } = this.props
-    const data = [
-      'Racing car sprays burning fuel into crowd.',
-      'Japanese princess to wed commoner.',
-      'Australian walks 100km after outback crash.',
-      'Man charged over missing wedding girl.',
-      'Los Angeles battles huge wildfires.',
+    const { history, cart, updateCart, emptyCart } = this.props
+    const routes = [
+      { path: '/', breadcrumbName: 'Home' },
+      { path: '/cart', breadcrumbName: 'Cart' },
     ]
+    const listData = []
+    cart.items
+      .filter(item => item.quantity > 0)
+      .forEach(item => {
+        listData.push({
+          item: item.item,
+          title: item.title,
+          quantity: item.quantity,
+          price: item.price,
+          image: item.image,
+        })
+      })
 
     return (
-      <Space direction='vertical'>
-        <h1>CART</h1>
-        {cart.quantity ? (
-          <Space direction='vertical'>
-            <List
-              size='large'
-              header={<div>Header</div>}
-              footer={<div>Footer</div>}
-              bordered
-              dataSource={data}
-              renderItem={item => <List.Item>{item}</List.Item>}
-            />
-            {cart.items.map(item => (
-              <Space key={item.item}>
-                <div>Item: {item.title}</div>
-                <div>Quantity: {item.quantity}</div>
-                <div>Price: {item.price}</div>
+      <div>
+        <PageHeader breadcrumb={{ routes }} />
+        <Space style={{ padding: '10px 50px 30px 50px', width: '100%' }} direction='vertical'>
+          <h1>CART</h1>
+          {cart.quantity ? (
+            <Space style={{ width: '100%' }} direction='vertical' size='large'>
+              <List
+                bordered
+                itemLayout='vertical'
+                size='large'
+                dataSource={listData}
+                renderItem={item => (
+                  <List.Item
+                    key={item.title}
+                    extra={
+                      <Space direction='vertical'>
+                        <h2>${(item.price * item.quantity).toFixed(2)}</h2>
+                        <InputNumber
+                          size='large'
+                          min={1}
+                          max={9}
+                          value={item.quantity}
+                          onChange={value => updateCart(item.item, value - item.quantity)}
+                        />
+                        <Button onClick={() => updateCart(item.item, -item.quantity)}>
+                          Remove
+                        </Button>
+                      </Space>
+                    }
+                  >
+                    <List.Item.Meta
+                      avatar={
+                        <img
+                          style={{ cursor: 'pointer' }}
+                          width={180}
+                          src={item.image}
+                          onClick={() => history.push(`/item/${item.item}`)}
+                        />
+                      }
+                      title={
+                        <div
+                          style={{ cursor: 'pointer' }}
+                          onClick={() => history.push(`/item/${item.item}`)}
+                        >
+                          {item.title}
+                        </div>
+                      }
+                      description={<div>Unit Price: ${item.price}</div>}
+                    />
+                  </List.Item>
+                )}
+              />
+              <Space style={{ width: '100%' }} direction='vertical'>
+                <h2 style={{ textAlign: 'right' }}>Subtotal: ${cart.price.toFixed(2)}</h2>
+                <Space style={{ float: 'right' }}>
+                  <Button size='large' onClick={() => emptyCart()}>
+                    Empty Cart
+                  </Button>
+                  <Button type='primary' size='large' onClick={() => history.push('/checkout')}>
+                    Check out
+                  </Button>
+                </Space>
               </Space>
-            ))}
-            <div>Quantity: {cart.quantity}</div>
-            <div>Total: {cart.price}</div>
-          </Space>
-        ) : (
-          <div>Cart is empty</div>
-        )}
-        {cart.quantity > 0 ? (
-          <Button onClick={() => history.push('/checkout')}>Check out</Button>
-        ) : (
-          <Button onClick={() => history.push('/checkout')} disabled>
-            Check out
-          </Button>
-        )}
-        <Button onClick={() => emptyCart()}>Empty Cart</Button>
-      </Space>
+            </Space>
+          ) : (
+            <div>Cart is empty</div>
+          )}
+        </Space>
+      </div>
     )
   }
 }
@@ -58,4 +102,4 @@ const mapStateToProps = state => ({
   cart: state.cart,
 })
 
-export default connect(mapStateToProps, { emptyCart })(Cart)
+export default connect(mapStateToProps, { updateCart, emptyCart })(Cart)
