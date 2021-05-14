@@ -16,6 +16,7 @@ class Cart extends React.Component {
       .filter(item => item.quantity > 0)
       .forEach(item => {
         listData.push({
+          _id: item._id,
           item: item.item,
           title: item.title,
           quantity: item.quantity,
@@ -27,7 +28,11 @@ class Cart extends React.Component {
     return (
       <div>
         <PageHeader breadcrumb={{ routes }} />
-        <Space style={{ padding: '10px 50px 30px 50px', width: '100%' }} direction='vertical'>
+        <Space
+          style={{ padding: '10px 50px 30px 50px', width: '100%' }}
+          direction='vertical'
+          size='large'
+        >
           <h1>CART</h1>
           {cart.quantity ? (
             <Space style={{ width: '100%' }} direction='vertical' size='large'>
@@ -38,7 +43,7 @@ class Cart extends React.Component {
                 dataSource={listData}
                 renderItem={item => (
                   <List.Item
-                    key={item.title}
+                    key={item._id}
                     extra={
                       <Space direction='vertical'>
                         <h2>${(item.price * item.quantity).toFixed(2)}</h2>
