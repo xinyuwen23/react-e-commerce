@@ -8,13 +8,13 @@ const initialState = {
   allItems: {},
   itemList: [],
 
-  cart: { items: [] },
+  cart: '',
 
   isAddressModalVisible: false,
   addressList: [],
 
   orderList: [],
-  order: {},
+  order: '',
 
   isHelpModalVisible: false,
   help: {},

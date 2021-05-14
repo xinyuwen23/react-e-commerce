@@ -21,7 +21,7 @@ export const createOrder =
   ({ history, price, items, shippingCost, address }) =>
   dispatch => {
     if (!address) {
-      message.error('No address selected')
+      message.error('Please select your address')
     } else {
       axios.post('order/create_order', { price, items, shippingCost, address }).then(res => {
         if (res.status === 200 && res.data.code === 0) {
@@ -29,8 +29,8 @@ export const createOrder =
             type: 'CREATE_ORDER',
             payload: { orderList: res.data.orderList, cart: res.data.cart },
           })
-          history.push('/orders')
           message.success('Thank you! Your order has been placed.')
+          history.push('/orders')
         }
       })
     }

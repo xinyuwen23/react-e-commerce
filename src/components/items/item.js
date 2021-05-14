@@ -23,7 +23,7 @@ class Item extends React.Component {
       { path: '/', breadcrumbName: 'Home' },
       { path: '/category', breadcrumbName: 'Category' },
       { path: `/${item.category}`, breadcrumbName: item.category },
-      { path: 'product', breadcrumbName: 'Product' },
+      { path: 'item', breadcrumbName: `Product #${item._id}` },
     ]
     return (
       <div>
@@ -63,7 +63,7 @@ class Item extends React.Component {
             </Col>
           </Row>
           <Space style={{ padding: '0px 100px 0px 100px' }} direction='vertical' size='large'>
-            <div style={{ fontSize: 24, fontWeight: 'bold' }}>About This Item</div>
+            <h2>About This Product</h2>
             <ReactMarkdown>{item.description}</ReactMarkdown>
           </Space>
         </Space>

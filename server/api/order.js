@@ -13,16 +13,21 @@ router.get('/list', (req, res) => {
 
 router.get('/get_orders', (req, res) => {
   const { _id } = req.cookies
-  Order.find({ user: _id }, (err, doc) => {
-    return res.json({ code: 0, orderList: doc })
-  })
+  Order.find({ user: _id })
+    .populate({ path: 'items', populate: 'item' })
+    .exec((err, doc) => {
+      return res.json({ code: 0, orderList: doc })
+    })
 })
 
 router.post('/get_order', (req, res) => {
   const { _id } = req.body
-  Order.findOne({ _id }, (req, doc) => {
-    return res.json({ code: 0, order: doc })
-  })
+  Order.findOne({ _id })
+    .populate({ path: 'items', populate: 'item' })
+    .populate('address')
+    .exec((req, doc) => {
+      return res.json({ code: 0, order: doc })
+    })
 })
 
 router.post('/create_order', (req, res) => {

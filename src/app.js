@@ -49,7 +49,7 @@ class App extends React.Component {
             <Route exact path='/cart' component={Cart} />
             <Route exact path='/addressbook' component={AddressBook} />
             <Route exact path='/orders' component={Orders} />
-            <Route exact path='/orders/:_id' component={Order} />
+            <Route exact path='/order/:_id' component={Order} />
             <Route exact path='/checkout' component={Checkout} />
             <Route exact path='/seller' component={Seller} />
             <Route exact path='/' component={Home} />

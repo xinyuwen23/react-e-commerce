@@ -3,6 +3,10 @@ import { connect } from 'react-redux'
 import { Space, Card } from 'antd'
 
 class Home extends React.Component {
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
+
   render() {
     const { history, allItems } = this.props
     const categoryList = [
