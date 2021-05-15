@@ -1,10 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const DB_URL =
-  process.env.MONGODB_URI ||
-  'mongodb+srv://xinyuwen:G3lAjbeJr06ag1yh@cluster0.wvzvz.mongodb.net/e-commerce?retryWrites=true&w=majority'
-// 'mongodb://localhost:27017/e-commerce'
+const DB_URL = process.env.MONGODB_URI
 
 mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 
