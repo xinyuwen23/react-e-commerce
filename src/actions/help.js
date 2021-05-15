@@ -1,8 +1,6 @@
 import axios from 'axios'
 import { message } from 'antd'
 
-import { uploadImages } from './item'
-
 export const openHelpModal = () => dispatch => {
   dispatch({ type: 'SET_STATE', payload: { isHelpModalVisible: true } })
 }
@@ -30,18 +28,40 @@ export const getHelp = () => dispatch => {
 export const createHelp = (helpModal, order) => dispatch => {
   const { action, description, fileList } = helpModal.state
   let images = []
-  uploadImages(fileList, images)
-  setTimeout(() => {
-    axios.post('help/create_help', { order, action, description, images }).then(res => {
-      if (res.status === 200 && res.data.code === 0) {
-        dispatch({ type: 'CREATE_HELP' })
-        message.success(res.data.message)
-        helpModal.setState({
-          action: '',
-          description: '',
-          fileList: [],
-        })
+  let imageProcessed = 0
+  if (!action || !description) {
+    message.error('Action and Description are required')
+  } else {
+    fileList.forEach(file => {
+      const formData = new FormData()
+      formData.append('file', file)
+      formData.append('upload_preset', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET)
+      const options = {
+        method: 'POST',
+        body: formData,
       }
+      fetch(process.env.REACT_APP_CLOUDINARY_UPLOAD_URL, options)
+        .then(res => res.json())
+        .then(res => {
+          images.push(res.secure_url)
+          imageProcessed++
+          if (imageProcessed === fileList.length) {
+            axios
+              .post('help/create_help', { order, action, description, images })
+              .then(res => {
+                if (res.status === 200 && res.data.code === 0) {
+                  dispatch({ type: 'CREATE_HELP' })
+                  message.success(res.data.message)
+                  helpModal.setState({
+                    action: '',
+                    description: '',
+                    fileList: [],
+                  })
+                }
+              })
+              .catch(err => console.log(err))
+          }
+        })
     })
-  }, 5000)
+  }
 }

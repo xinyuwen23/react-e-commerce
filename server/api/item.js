@@ -5,11 +5,13 @@ const Item = require('../models').Item
 const User = require('../models').User
 
 router.get('/list', (req, res) => {
-  Item.find({}, (err, doc) => {
-    if (!err) {
-      return res.json(doc)
-    }
-  })
+  Item.find({})
+    .populate('seller')
+    .exec((err, doc) => {
+      if (!err) {
+        return res.json(doc)
+      }
+    })
 })
 
 router.get('/get_seller_items', (req, res) => {

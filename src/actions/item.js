@@ -61,7 +61,6 @@ export const uploadItem = uploadModal => dispatch => {
   } else if (!validator.isInt(quantity) || quantity < 0) {
     message.error('Quantity must be integer and larger or equal to 0')
   } else {
-    // uploadImages(fileList, images)
     fileList.forEach(file => {
       const formData = new FormData()
       formData.append('file', file)
@@ -96,41 +95,5 @@ export const uploadItem = uploadModal => dispatch => {
         })
         .catch(err => console.log(err))
     })
-    // setTimeout(() => {
-    //   axios
-    //     .post('item/upload_item', { title, description, price, quantity, category, images })
-    //     .then(res => {
-    //       if (res.status === 200 && res.data.code === 0) {
-    //         dispatch({ type: 'UPLOAD_ITEM' })
-    //         message.success(res.data.message)
-    //         uploadModal.setState({
-    //           title: '',
-    //           description: '',
-    //           price: '',
-    //           quantity: '',
-    //           category: '',
-    //           fileList: [],
-    //         })
-    //       }
-    //     })
-    // }, 5000)
   }
-}
-
-export const uploadImages = (fileList, images) => {
-  fileList.forEach(file => {
-    const formData = new FormData()
-    formData.append('file', file)
-    formData.append('upload_preset', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET)
-    const options = {
-      method: 'POST',
-      body: formData,
-    }
-    return fetch(process.env.REACT_APP_CLOUDINARY_UPLOAD_URL, options)
-      .then(res => res.json())
-      .then(res => {
-        images.push(res.secure_url)
-      })
-      .catch(err => console.log(err))
-  })
 }

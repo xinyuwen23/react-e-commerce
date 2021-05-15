@@ -9,9 +9,7 @@ import { openUploadModal, getSellerItemList } from '../../actions/item'
 class Seller extends React.Component {
   componentDidMount() {
     const { history, user, getSellerItemList } = this.props
-    if (!user.isSeller) {
-      history.push('/')
-    }
+    if (!user.isSeller) history.push('/')
     getSellerItemList()
   }
 
@@ -89,7 +87,10 @@ class Seller extends React.Component {
           <h1>SELLER</h1>
           <Button onClick={() => openUploadModal()}>New Item</Button>
           <Divider />
-          <Table columns={columns} dataSource={sellerItemList} />
+          <Space style={{ width: '100%' }} direction='vertical' size='large'>
+            <h2>My Products</h2>
+            <Table columns={columns} dataSource={sellerItemList} />
+          </Space>
         </Space>
       </div>
     )
