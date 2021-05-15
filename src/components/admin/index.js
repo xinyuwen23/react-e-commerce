@@ -3,11 +3,8 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Space, Button, PageHeader } from 'antd'
 
-import { openUploadModal } from '../../actions/item'
-
-class Seller extends React.Component {
+class Admin extends React.Component {
   render() {
-    const { openUploadModal } = this.props
     const routes = [
       { path: '/', breadcrumbName: 'Home' },
       { path: '/seller', breadcrumbName: 'Seller' },
@@ -16,12 +13,7 @@ class Seller extends React.Component {
       <div>
         <PageHeader breadcrumb={{ routes }} />
         <Space style={{ padding: '10px 50px 30px 50px', width: '100%' }} direction='vertical'>
-          <h1>SELLER</h1>
-          <Space>
-            <Button type='primary' onClick={() => openUploadModal()}>
-              New Item
-            </Button>
-          </Space>
+          <h1>ADMIN</h1>
         </Space>
       </div>
     )
@@ -30,4 +22,4 @@ class Seller extends React.Component {
 
 const mapStateToProps = state => ({})
 
-export default connect(mapStateToProps, { openUploadModal })(withRouter(Seller))
+export default connect(mapStateToProps, null)(withRouter(Admin))

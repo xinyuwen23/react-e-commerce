@@ -13,7 +13,7 @@ const helpRouter = require('./api/help')
 
 const app = express()
 
-const PORT = process.env.SERVER_PORT
+const PORT = process.env.PORT || 4000
 
 const buildPath = path.join(__dirname, '..', 'build')
 app.use(express.static(buildPath))
