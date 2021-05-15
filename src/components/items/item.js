@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { message, Space, Button, PageHeader, Image, InputNumber, Row, Col } from 'antd'
+import { message, Space, Button, PageHeader, Image, InputNumber, Row, Col, Tag } from 'antd'
 import ReactMarkdown from 'react-markdown'
 
 import { getItem } from '../../actions/item'
@@ -37,7 +37,7 @@ class Item extends React.Component {
               <Space direction='vertical'>
                 <div style={{ fontSize: 28, fontWeight: 'bold' }}>{item.title}</div>
                 <Space direction='vertical' size='large'>
-                  <div style={{ fontSize: 16 }}>Seller: {item.seller}</div>
+                  <Tag color='blue'>SELLER: {item.seller}</Tag>
                   <div style={{ fontSize: 32, fontWeight: 'bold' }}>${item.price}</div>
                   <div>
                     <InputNumber

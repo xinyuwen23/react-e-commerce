@@ -12,6 +12,16 @@ router.get('/list', (req, res) => {
   })
 })
 
+router.get('/get_seller_items', (req, res) => {
+  const { _id } = req.cookies
+  if (!_id) {
+    return res.json({ code: 1 })
+  }
+  Item.find({ seller: _id }, (err, sellerItemList) => {
+    return res.json({ code: 0, sellerItemList })
+  })
+})
+
 router.post('/get_item', (req, res) => {
   const { _id } = req.body
   Item.findOne({ _id }, (err, item) => {

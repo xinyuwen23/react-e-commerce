@@ -7,6 +7,7 @@ const initialState = {
   item: {},
   allItems: {},
   itemList: [],
+  sellerItemList: [],
 
   cart: '',
 
@@ -43,6 +44,9 @@ const reducer = (state = initialState, action) => {
 
     case 'GET_ITEM_LIST':
       return { ...state, itemList: action.payload }
+
+    case 'GET_SELLER_ITEM_LIST':
+      return { ...state, sellerItemList: action.payload }
 
     case 'GET_ITEM':
       return { ...state, item: action.payload }
