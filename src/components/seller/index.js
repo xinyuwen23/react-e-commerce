@@ -8,6 +8,10 @@ import { openUploadModal } from '../../actions/item'
 class Seller extends React.Component {
   render() {
     const { openUploadModal } = this.props
+    const routes = [
+      { path: '/', breadcrumbName: 'Home' },
+      { path: '/seller', breadcrumbName: 'Seller' },
+    ]
     return (
       <div>
         <div>Seller Page</div>

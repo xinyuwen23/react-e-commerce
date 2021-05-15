@@ -62,7 +62,7 @@ class Order extends React.Component {
             </Space>
             <Divider />
             <Space direction='vertical' size='large'>
-              <Button style={{ width: 150 }} onClick={() => openHelpModal()}>
+              <Button style={{ width: 150 }} type='primary' onClick={() => openHelpModal()}>
                 Help Desk
               </Button>
             </Space>

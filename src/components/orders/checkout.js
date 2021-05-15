@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Space, Button, Card, Radio, PageHeader, Divider } from 'antd'
+import { Space, Button, Card, Radio, PageHeader, Divider, Row, Col } from 'antd'
 
 import { openAddressModal, getAddressList } from '../../actions/address'
 import { createOrder } from '../../actions/order'
@@ -35,8 +35,17 @@ class Checkout extends React.Component {
           <Space style={{ padding: '10px 50px 30px 50px', width: '100%' }} direction='vertical'>
             <h1>CHECKOUT</h1>
             <Divider />
-            <Space direction='vertical'>
-              <h2>CART</h2>
+            <Space style={{ width: '100%' }} direction='vertical'>
+              <Row>
+                <Col span={12}>
+                  <h2>CART</h2>
+                </Col>
+                <Col span={12}>
+                  <Button style={{ float: 'right' }} onClick={() => history.push('/cart')}>
+                    Edit
+                  </Button>
+                </Col>
+              </Row>
               <div>
                 Subtotal: ${cart.price} | Items: {cart.quantity}
               </div>
@@ -120,6 +129,7 @@ class Checkout extends React.Component {
               <p>Shipping Fees: ${this.state.shippingCost.toFixed(2)}</p>
               <h3>Total: ${(cart.price + this.state.shippingCost).toFixed(2)}</h3>
             </Space>
+            <Divider />
             <Button
               style={{ width: 200 }}
               type='primary'
