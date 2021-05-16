@@ -13,7 +13,7 @@ class Order extends React.Component {
     getOrder(_id)
   }
   render() {
-    const { order, openHelpModal } = this.props
+    const { user, order, openHelpModal } = this.props
     const routes = [
       { path: '/', breadcrumbName: 'Home' },
       { path: '/orders', breadcrumbName: 'Order History' },
@@ -61,11 +61,13 @@ class Order extends React.Component {
               <div>DUMMY CREDIT CARD</div>
             </Space>
             <Divider />
-            <Space direction='vertical' size='large'>
-              <Button style={{ width: 150 }} type='primary' onClick={() => openHelpModal()}>
-                Help Desk
-              </Button>
-            </Space>
+            {order.user === user._id && (
+              <Space direction='vertical' size='large'>
+                <Button style={{ width: 150 }} type='primary' onClick={() => openHelpModal()}>
+                  Help Desk
+                </Button>
+              </Space>
+            )}
           </Space>
         )}
       </div>
@@ -74,6 +76,7 @@ class Order extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  user: state.user,
   order: state.order,
 })
 

@@ -1,40 +1,30 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Space, Button, PageHeader, Divider, Table, Tag } from 'antd'
+import { Space, PageHeader, Table, Divider, Tag } from 'antd'
 import moment from 'moment'
 
-import { openUploadModal, getSellerItemList } from '../../actions/item'
+import { getAllItems } from '../../actions/item'
 
-class Seller extends React.Component {
+class AllItems extends React.Component {
   componentDidMount() {
-    const { getSellerItemList } = this.props
-    getSellerItemList()
+    const { getAllItems } = this.props
+    getAllItems()
   }
 
   render() {
-    const { history, sellerItemList, openUploadModal } = this.props
-    let itemSold = 0
-    let totalIncome = 0
-
-    sellerItemList.forEach(item => {
-      if (item.sold) {
-        itemSold += item.sold
-        totalIncome += item.sold * item.price
-      }
-    })
-
+    const { history, allItems } = this.props
     const routes = [
       { path: '/', breadcrumbName: 'Home' },
-      { path: '/seller', breadcrumbName: 'Seller' },
+      { path: '/admin', breadcrumbName: 'Admin' },
+      { path: '/products', breadcrumbName: 'All Products' },
     ]
     const tagColor = {
       Household: 'red',
       Drinks: 'blue',
       'COVID-19': 'green',
     }
-
-    const columns = [
+    const product_columns = [
       {
         title: 'Product',
         dataIndex: 'images',
@@ -87,35 +77,34 @@ class Seller extends React.Component {
         sorter: (a, b) => a.sold * a.price - b.sold * b.price,
         render: (text, record) => <div>${(record.sold * record.price).toFixed(2)}</div>,
       },
+      {
+        title: 'Seller',
+        dataIndex: 'seller',
+        key: 'seller',
+        sorter: (a, b) => a.seller - b.seller,
+        render: seller => seller.name,
+      },
     ]
 
     return (
       <div>
         <PageHeader breadcrumb={{ routes }} />
-        <Space style={{ padding: '10px 50px 30px 50px', width: '100%' }} direction='vertical'>
-          <h1>SELLER PAGE</h1>
-          <Button style={{ width: 150 }} size='large' onClick={() => openUploadModal()}>
-            Add New Item
-          </Button>
-          <Divider />
-          <Space style={{ width: '100%' }} direction='vertical' size='large'>
-            <h2>SUMMARY</h2>
-            <div>Products Sold: {itemSold}</div>
-            <div>Total Income: ${totalIncome.toFixed(2)}</div>
+        {allItems.length && (
+          <Space style={{ padding: '10px 50px 30px 50px', width: '100%' }} direction='vertical'>
+            <h1>REVIEW PRODUCTS</h1>
+            <Divider />
+            <Space style={{ width: '100%' }} direction='vertical' size='large'>
+              <Table columns={product_columns} dataSource={allItems} />
+            </Space>
           </Space>
-          <Divider />
-          <Space style={{ width: '100%' }} direction='vertical' size='large'>
-            <h2>MY PRODUCTS</h2>
-            <Table columns={columns} dataSource={sellerItemList} />
-          </Space>
-        </Space>
+        )}
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  sellerItemList: state.sellerItemList,
+  allItems: state.allItems,
 })
 
-export default connect(mapStateToProps, { openUploadModal, getSellerItemList })(withRouter(Seller))
+export default connect(mapStateToProps, { getAllItems })(withRouter(AllItems))

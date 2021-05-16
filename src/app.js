@@ -21,6 +21,8 @@ import Checkout from './components/orders/checkout'
 import HelpModal from './components/help/helpModal'
 import Seller from './components/seller'
 import Admin from './components/admin'
+import AllItems from './components/admin/allItems'
+import AllHelps from './components/admin/allHelps'
 
 import { getUser } from './actions/auth'
 import { getAllItems } from './actions/item'
@@ -54,6 +56,8 @@ class App extends React.Component {
             <Route exact path='/checkout' component={Checkout} />
             <Route exact path='/seller' component={Seller} />
             <Route exact path='/admin' component={Admin} />
+            <Route exact path='/admin/products' component={AllItems} />
+            <Route exact path='/admin/helps' component={AllHelps} />
             <Route exact path='/' component={Home} />
           </Switch>
         </div>

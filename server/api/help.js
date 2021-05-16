@@ -12,15 +12,8 @@ router.get('/list', (req, res) => {
 })
 
 router.get('/get_helps', (req, res) => {
-  Order.find({}, (err, doc) => {
-    return res.json({ code: 0, helpList: doc })
-  })
-})
-
-router.post('/get_help', (req, res) => {
-  const { _id } = req.body
-  Help.findOne({ _id }, (err, doc) => {
-    return res.json({ code: 0, help: doc })
+  Help.find({}, (err, helpList) => {
+    return res.json({ code: 0, helpList })
   })
 })
 
