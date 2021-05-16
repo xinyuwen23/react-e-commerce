@@ -25,6 +25,14 @@ export const getHelpList = () => dispatch => {
   })
 }
 
+export const markHelp = help => dispatch => {
+  axios.post('help/mark_help', { help }).then(res => {
+    if (res.status === 200 && res.data.code === 0) {
+      dispatch({ type: 'GET_HELP_LIST', payload: res.data.helpList })
+    }
+  })
+}
+
 export const createHelp = (helpModal, order) => dispatch => {
   const { action, description, fileList } = helpModal.state
   let images = []

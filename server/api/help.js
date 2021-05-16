@@ -19,6 +19,19 @@ router.get('/get_helps', (req, res) => {
     })
 })
 
+router.post('/mark_help', (req, res) => {
+  const { help } = req.body
+  Help.findOne({ _id: help._id }, (err, doc) => {
+    let newHelp = doc
+    newHelp.isSolved = true
+    Help.findOneAndUpdate({ _id: help._id }, newHelp, () => {
+      Help.find({}, (err, doc) => {
+        return res.json({ code: 0, helpList: doc })
+      })
+    })
+  })
+})
+
 router.post('/create_help', (req, res) => {
   const { _id } = req.cookies
   const { order, action, description, images } = req.body

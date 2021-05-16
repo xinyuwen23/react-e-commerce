@@ -71,7 +71,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, cart: action.payload.cart }
 
     case 'GET_HELP_LIST':
-      return { ...state, helpList: action.payload }
+      return { ...state, helpList: action.payload, isHelpContentVisible: false }
 
     case 'GET_HELP':
       return { ...state, help: action.payload }

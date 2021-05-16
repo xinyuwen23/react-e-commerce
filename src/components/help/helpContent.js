@@ -3,11 +3,11 @@ import { connect } from 'react-redux'
 import { Modal, Button, Space, Tag, Divider, Image } from 'antd'
 import ReactMarkdown from 'react-markdown'
 
-import { closeHelpContent } from '../../actions/help'
+import { closeHelpContent, markHelp } from '../../actions/help'
 
 class HelpContent extends React.Component {
   render() {
-    const { isHelpContentVisible, help, closeHelpContent } = this.props
+    const { isHelpContentVisible, help, closeHelpContent, markHelp } = this.props
     return (
       <div>
         {help && (
@@ -19,7 +19,7 @@ class HelpContent extends React.Component {
               <Button key='close' onClick={() => closeHelpContent()}>
                 Close
               </Button>,
-              <Button key='login' type='primary' onClick={() => closeHelpContent()}>
+              <Button key='login' type='primary' onClick={() => markHelp(help)}>
                 Mark as Solved
               </Button>,
             ]}
@@ -45,4 +45,4 @@ const mapStateToProps = state => ({
   help: state.help,
 })
 
-export default connect(mapStateToProps, { closeHelpContent })(HelpContent)
+export default connect(mapStateToProps, { closeHelpContent, markHelp })(HelpContent)
