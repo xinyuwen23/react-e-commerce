@@ -38,7 +38,7 @@ class Order extends React.Component {
                   .filter(item => item.quantity > 0)
                   .map(item => (
                     <div key={item.item}>
-                      <img width={120} src={item.item.images[0]} /> X {item.quantity}
+                      <img alt='img' width={120} src={item.item.images[0]} /> X {item.quantity}
                     </div>
                   ))}
               </Space>
@@ -63,7 +63,7 @@ class Order extends React.Component {
             <Divider />
             {order.user === user._id && (
               <Space direction='vertical' size='large'>
-                <Button style={{ width: 150 }} type='primary' onClick={() => openHelpModal()}>
+                <Button style={{ width: 150 }} type='primary' onClick={() => openHelpModal(order)}>
                   Help Desk
                 </Button>
               </Space>

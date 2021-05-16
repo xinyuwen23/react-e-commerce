@@ -18,11 +18,13 @@ import AddressBook from './components/address/addressBook'
 import Orders from './components/orders/orders'
 import Order from './components/orders/order'
 import Checkout from './components/orders/checkout'
+import OrderPlaced from './components/orders/orderPlaced'
 import HelpModal from './components/help/helpModal'
 import Seller from './components/seller'
 import Admin from './components/admin'
 import AllItems from './components/admin/allItems'
 import AllHelps from './components/admin/allHelps'
+import HelpContent from './components/help/helpContent'
 
 import { getUser } from './actions/auth'
 import { getAllItems } from './actions/item'
@@ -43,6 +45,7 @@ class App extends React.Component {
         <UploadModal />
         <AddressModal />
         <HelpModal />
+        <HelpContent />
         <div id='main'>
           <Switch>
             <Route exact path='/profile' component={Profile} />
@@ -54,6 +57,7 @@ class App extends React.Component {
             <Route exact path='/orders' component={Orders} />
             <Route exact path='/order/:_id' component={Order} />
             <Route exact path='/checkout' component={Checkout} />
+            <Route exact path='/orderplaced' component={OrderPlaced} />
             <Route exact path='/seller' component={Seller} />
             <Route exact path='/admin' component={Admin} />
             <Route exact path='/admin/products' component={AllItems} />

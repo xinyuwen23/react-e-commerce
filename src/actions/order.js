@@ -27,10 +27,10 @@ export const createOrder =
         if (res.status === 200 && res.data.code === 0) {
           dispatch({
             type: 'CREATE_ORDER',
-            payload: { orderList: res.data.orderList, cart: res.data.cart },
+            payload: {  cart: res.data.cart },
           })
           message.success('Thank you! Your order has been placed.')
-          history.push('/orders')
+          history.push('/orderplaced')
         }
       })
     }

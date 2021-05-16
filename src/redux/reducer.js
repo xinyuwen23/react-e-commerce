@@ -18,7 +18,8 @@ const initialState = {
   order: '',
 
   isHelpModalVisible: false,
-  help: {},
+  isHelpContentVisible: false,
+  help: '',
   helpList: [],
 }
 
@@ -67,7 +68,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, order: action.payload }
 
     case 'CREATE_ORDER':
-      return { ...state, orderList: action.payload.orderList, cart: action.payload.cart }
+      return { ...state, cart: action.payload.cart }
 
     case 'GET_HELP_LIST':
       return { ...state, helpList: action.payload }

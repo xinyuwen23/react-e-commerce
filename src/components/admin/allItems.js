@@ -17,14 +17,14 @@ class AllItems extends React.Component {
     const routes = [
       { path: '/', breadcrumbName: 'Home' },
       { path: '/admin', breadcrumbName: 'Admin' },
-      { path: '/products', breadcrumbName: 'All Products' },
+      { path: '/products', breadcrumbName: 'Products' },
     ]
     const tagColor = {
       Household: 'red',
       Drinks: 'blue',
       'COVID-19': 'green',
     }
-    const product_columns = [
+    const columns = [
       {
         title: 'Product',
         dataIndex: 'images',
@@ -94,7 +94,7 @@ class AllItems extends React.Component {
             <h1>REVIEW PRODUCTS</h1>
             <Divider />
             <Space style={{ width: '100%' }} direction='vertical' size='large'>
-              <Table columns={product_columns} dataSource={allItems} />
+              <Table columns={columns} dataSource={allItems} />
             </Space>
           </Space>
         )}

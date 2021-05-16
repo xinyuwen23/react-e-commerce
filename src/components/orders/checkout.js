@@ -56,6 +56,7 @@ class Checkout extends React.Component {
                     <div key={item.item}>
                       <img
                         width={120}
+                        alt='img'
                         src={item.image}
                         onClick={() => history.push(`/item/${item._id}`)}
                       />{' '}

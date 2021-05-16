@@ -54,7 +54,7 @@ router.post('/create_order', (req, res) => {
               Item.findOneAndUpdate({ _id: i.item }, item, { new: true }, (err, newItem) => {
                 itemProcessed++
                 if (itemProcessed === items.length) {
-                  return res.json({ code: 0, cart: newCart, orderList })
+                  return res.json({ code: 0, cart: newCart })
                 }
               })
             })

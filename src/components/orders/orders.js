@@ -45,7 +45,7 @@ class Orders extends React.Component {
                         >
                           View Order
                         </Button>
-                        <Button style={{ width: 120 }} onClick={() => openHelpModal()}>
+                        <Button style={{ width: 120 }} onClick={() => openHelpModal(order)}>
                           Help Desk
                         </Button>
                       </Space>

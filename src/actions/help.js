@@ -1,12 +1,20 @@
 import axios from 'axios'
 import { message } from 'antd'
 
-export const openHelpModal = () => dispatch => {
-  dispatch({ type: 'SET_STATE', payload: { isHelpModalVisible: true } })
+export const openHelpModal = order => dispatch => {
+  dispatch({ type: 'SET_STATE', payload: { isHelpModalVisible: true, order } })
 }
 
 export const closeHelpModal = () => dispatch => {
   dispatch({ type: 'SET_STATE', payload: { isHelpModalVisible: false } })
+}
+
+export const openHelpContent = help => dispatch => {
+  dispatch({ type: 'SET_STATE', payload: { isHelpContentVisible: true, help } })
+}
+
+export const closeHelpContent = () => dispatch => {
+  dispatch({ type: 'SET_STATE', payload: { isHelpContentVisible: false } })
 }
 
 export const getHelpList = () => dispatch => {

@@ -65,6 +65,7 @@ class Cart extends React.Component {
                         <img
                           style={{ cursor: 'pointer' }}
                           width={180}
+                          alt='img'
                           src={item.image}
                           onClick={() => history.push(`/item/${item.item}`)}
                         />

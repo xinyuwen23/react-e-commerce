@@ -12,22 +12,25 @@ router.get('/list', (req, res) => {
 })
 
 router.get('/get_helps', (req, res) => {
-  Help.find({}, (err, helpList) => {
-    return res.json({ code: 0, helpList })
-  })
+  Help.find({})
+    .populate('user')
+    .exec((err, helpList) => {
+      return res.json({ code: 0, helpList })
+    })
 })
 
 router.post('/create_help', (req, res) => {
   const { _id } = req.cookies
-  const { order, description, images } = req.body
+  const { order, action, description, images } = req.body
   const help = new Help({
     user: _id,
     order,
+    action,
     description,
     images,
   })
   help.save(() => {
-    return res.json({ code: 0, message: "Help sent. We'll contact you soon" })
+    return res.json({ code: 0, message: "Request sent. We'll contact you soon" })
   })
 })
 
