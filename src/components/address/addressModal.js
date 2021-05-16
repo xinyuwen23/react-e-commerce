@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Modal, Space, Input, Button } from 'antd'
+import { Modal, Space, Input, Button, Select } from 'antd'
 
 import { closeAddressModal, addAddress } from '../../actions/address'
 
@@ -11,7 +11,7 @@ class AddressModal extends React.Component {
     city: '',
     state: '',
     zip: '',
-    region: 'United States',
+    region: '',
   }
 
   render() {
@@ -56,7 +56,13 @@ class AddressModal extends React.Component {
               value={this.state.zip}
               onChange={e => this.setState({ zip: e.target.value })}
             />
-            <Input placeholder='Region' value={this.state.region} disabled />
+            <Select
+              style={{ width: 171 }}
+              placeholder='Region'
+              onChange={value => this.setState({ region: value })}
+            >
+              <Select.Option value='United States'>United States</Select.Option>
+            </Select>
           </Space>
         </Space>
       </Modal>
