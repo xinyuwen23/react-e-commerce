@@ -39,9 +39,9 @@ class AllItems extends React.Component {
         ),
       },
       {
-        title: 'Start Selling',
+        title: 'Start Date',
         dataIndex: 'createdAt',
-        key: 'start_selling',
+        key: 'date',
         sorter: (a, b) => a.createdAt > b.createdAt,
         render: createdAt => <div>{moment(createdAt).format('MM-DD-YYYY')}</div>,
       },

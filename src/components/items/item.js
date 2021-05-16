@@ -18,12 +18,12 @@ class Item extends React.Component {
   }
 
   render() {
-    const { item, updateCart } = this.props
+    const { user, item, updateCart } = this.props
     const routes = [
       { path: '/', breadcrumbName: 'Home' },
       { path: '/category', breadcrumbName: 'Category' },
       { path: `/${item.category}`, breadcrumbName: item.category },
-      { path: 'item', breadcrumbName: `Product #${item._id}` },
+      { path: 'item', breadcrumbName: 'Product' },
     ]
     return (
       <div>
@@ -53,7 +53,9 @@ class Item extends React.Component {
                     size='large'
                     onClick={() => {
                       updateCart(item._id, this.state.quantity)
-                      message.success('Added to Cart')
+                      if (user._id) {
+                        message.success('Added to Cart')
+                      }
                     }}
                   >
                     Add to Cart
@@ -73,6 +75,7 @@ class Item extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  user: state.user,
   item: state.item,
 })
 
