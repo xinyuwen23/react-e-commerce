@@ -19,9 +19,9 @@ class NavBar extends React.Component {
     return (
       <Menu mode='horizontal' theme='dark'>
         <Menu.SubMenu
-          key='category'
+          key='categories'
           icon={<MenuOutlined />}
-          title='Category'
+          title='Categories'
           onTitleClick={() => history.push('/category')}
         >
           {categoryDropdown.map(category => (
