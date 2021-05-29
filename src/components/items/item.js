@@ -23,7 +23,7 @@ class Item extends React.Component {
       { path: '/', breadcrumbName: 'Home' },
       { path: '/category', breadcrumbName: 'Category' },
       { path: `/${item.category}`, breadcrumbName: item.category },
-      { path: 'item', breadcrumbName: 'Product' },
+      { path: 'item', breadcrumbName: 'Product Details' },
     ]
     return (
       <div>
