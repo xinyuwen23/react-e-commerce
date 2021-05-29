@@ -12,8 +12,6 @@ An application allows users to buy and sell products, built with `React`, `Redux
 
 ## Installation and Setup Instructions
 
-#### Example:
-
 Clone down this repository. You will need `node` and `npm` installed globally on your machine. You will also need `mongodb` running locally.
 
 Installation:
