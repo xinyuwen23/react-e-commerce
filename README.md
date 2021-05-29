@@ -35,5 +35,3 @@ To Visit App:
 `localhost:3000`
 
 ## Reflection
-
-To be continued.
