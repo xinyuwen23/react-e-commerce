@@ -17,7 +17,7 @@ class Order extends React.Component {
     const routes = [
       { path: '/', breadcrumbName: 'Home' },
       { path: '/orders', breadcrumbName: 'Order History' },
-      { path: 'order', breadcrumbName: 'Order Details' },
+      { path: 'order', breadcrumbName: 'Order Summary' },
     ]
     return (
       <div>
