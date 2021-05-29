@@ -1,6 +1,6 @@
 # E-Commerce App
 
-An application allows users to buy and sell products, built with `React`, `Redux`, `Node.js`, `Express.js`, and `MongoDB`.
+An application that allows users to buy and sell products, built with `React`, `Redux`, `Node.js`, `Express.js`, and `MongoDB`.
 
 ## Demo
 
