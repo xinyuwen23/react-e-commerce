@@ -2,7 +2,7 @@
 
 An application allows users to buy and sell products, built with `React`, `Redux`, `Node.js`, and `Express.js`.
 
-## Deployment
+## Demo
 
 [https://xinyuwen-react-e-commerce.herokuapp.com](https://xinyuwen-react-e-commerce.herokuapp.com)
 
