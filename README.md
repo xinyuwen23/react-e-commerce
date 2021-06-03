@@ -6,7 +6,7 @@ An application that allows users to buy and sell products, built with `React`, `
 
 [https://xinyuwen-react-e-commerce.herokuapp.com](https://xinyuwen-react-e-commerce.herokuapp.com)
 
-## Project Screen Shot(s)
+## Project Screenshot
 
 ![screen shot](https://github.com/xinyuwen23/react-e-commerce/blob/master/screenshots/1.png?raw=true)
 
