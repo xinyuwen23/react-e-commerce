@@ -33,5 +33,3 @@ To Start Client:
 To Visit App:
 
 `localhost:3000`
-
-## Reflection
