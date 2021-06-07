@@ -10,11 +10,11 @@ An application that allows users to buy and sell products, built with `React`, `
 
 ![screen shot](https://github.com/xinyuwen23/react-e-commerce/blob/master/screenshots/1.png?raw=true)
 
-![screen shot](https://github.com/xinyuwen23/react-e-commerce/blob/master/screenshots/1.png?raw=true)
+![screen shot](https://github.com/xinyuwen23/react-e-commerce/blob/master/screenshots/2.png?raw=true)
 
-![screen shot](https://github.com/xinyuwen23/react-e-commerce/blob/master/screenshots/1.png?raw=true)
+![screen shot](https://github.com/xinyuwen23/react-e-commerce/blob/master/screenshots/3.png?raw=true)
 
-![screen shot](https://github.com/xinyuwen23/react-e-commerce/blob/master/screenshots/1.png?raw=true)
+![screen shot](https://github.com/xinyuwen23/react-e-commerce/blob/master/screenshots/4.png?raw=true)
 
 ## Installation and Setup Instructions
 
