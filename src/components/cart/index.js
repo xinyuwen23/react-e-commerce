@@ -12,18 +12,19 @@ class Cart extends React.Component {
       { path: '/cart', breadcrumbName: 'Cart' },
     ]
     const listData = []
-    cart.items
-      .filter(item => item.quantity > 0)
-      .forEach(item => {
-        listData.push({
-          _id: item._id,
-          item: item.item,
-          title: item.title,
-          quantity: item.quantity,
-          price: item.price,
-          image: item.image,
+    cart &&
+      cart.items
+        .filter(item => item.quantity > 0)
+        .forEach(item => {
+          listData.push({
+            _id: item._id,
+            item: item.item,
+            title: item.title,
+            quantity: item.quantity,
+            price: item.price,
+            image: item.image,
+          })
         })
-      })
 
     return (
       <div>
