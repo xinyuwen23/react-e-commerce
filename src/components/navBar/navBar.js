@@ -2,7 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Menu } from 'antd'
-import { UserOutlined, ShoppingCartOutlined, LoginOutlined, MenuOutlined } from '@ant-design/icons'
+import {
+  UserOutlined,
+  ShoppingCartOutlined,
+  LoginOutlined,
+  MenuOutlined,
+  HomeOutlined,
+} from '@ant-design/icons'
 
 import { openLoginModal, logout } from '../../actions/auth'
 import { getFilteredItemList } from '../../actions/item'
@@ -18,6 +24,10 @@ class NavBar extends React.Component {
     ]
     return (
       <Menu mode='horizontal' theme='dark'>
+        <Menu.Item key='home' onClick={() => history.push('/')}>
+          <HomeOutlined />
+          Home
+        </Menu.Item>
         <Menu.SubMenu
           key='categories'
           icon={<MenuOutlined />}
