@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Space, Card } from 'antd'
 
+import SearchBar from './searchBar'
+
 class Home extends React.Component {
   componentDidMount() {
     window.scrollTo(0, 0)
@@ -17,7 +19,10 @@ class Home extends React.Component {
 
     return (
       <div>
-        <div id='homeImage'>E-COMMERCE APP</div>
+        <div id='homeImage'>
+          <div style={{ height: 160, paddingTop: 80 }}>E-COMMERCE APP</div>
+          <SearchBar />
+        </div>
         <Space style={{ padding: '10px 50px 30px 50px' }} direction='vertical'>
           <h2>RECOMMENDATION</h2>
           <Space style={{ width: '100%' }} wrap size='large'>

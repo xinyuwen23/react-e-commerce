@@ -27,7 +27,7 @@ class Orders extends React.Component {
           size='large'
         >
           <h1>ORDER HISTORY</h1>
-          {orderList.length && (
+          {orderList.length > 0 && (
             <Space style={{ width: '100%' }} direction='vertical'>
               <List
                 bordered
@@ -63,8 +63,8 @@ class Orders extends React.Component {
                           {order.items.map((item, index) =>
                             item.quantity ? (
                               <div>
-                                <img width={50} src={order.items[index].item.images[0]} /> X{' '}
-                                {order.items[index].quantity}
+                                <img alt='img' width={50} src={order.items[index].item.images[0]} />{' '}
+                                X {order.items[index].quantity}
                               </div>
                             ) : null
                           )}

@@ -42,6 +42,7 @@ class Seller extends React.Component {
         render: (images, record) => (
           <img
             style={{ cursor: 'pointer' }}
+            alt='img'
             width={100}
             src={images[0]}
             onClick={() => history.push(`/item/${record._id}`)}
