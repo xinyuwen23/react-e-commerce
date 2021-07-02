@@ -1,9 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Modal, Space, Input, Button } from 'antd'
-import { GoogleSquareFilled } from '@ant-design/icons'
+import { GoogleOutlined } from '@ant-design/icons'
 
-import { openRegisterModal, closeLoginModal, login } from '../../actions/auth'
+import { GoogleLogin } from 'react-google-login'
+
+import { openRegisterModal, closeLoginModal, login, handleGoogleLogin } from '../../actions/auth'
 
 class LoginModal extends React.Component {
   state = {
@@ -12,7 +14,8 @@ class LoginModal extends React.Component {
   }
 
   render() {
-    const { isLoginModalVisible, openRegisterModal, closeLoginModal, login } = this.props
+    const { isLoginModalVisible, openRegisterModal, closeLoginModal, login, handleGoogleLogin } =
+      this.props
     return (
       <Modal
         title='Login'
@@ -22,6 +25,26 @@ class LoginModal extends React.Component {
           <Button key='register' onClick={() => openRegisterModal()}>
             Create a new account
           </Button>,
+
+          <GoogleLogin
+            render={renderProps => (
+              <Button
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+                style={{ backgroundColor: 'rgb(46, 54, 70)', color: 'rgb(245, 245, 245)' }}
+              >
+                <GoogleOutlined />
+                Login with Google
+              </Button>
+            )}
+            key='googleLogin'
+            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+            buttonText='Login with Google'
+            onSuccess={handleGoogleLogin}
+            onFailure={handleGoogleLogin}
+            cookiePolicy={'single_host_origin'}
+          />,
+
           <Button key='login' type='primary' onClick={() => login(this.state)}>
             Login
           </Button>,
@@ -48,4 +71,9 @@ const mapStateToProps = state => ({
   isLoginModalVisible: state.isLoginModalVisible,
 })
 
-export default connect(mapStateToProps, { openRegisterModal, closeLoginModal, login })(LoginModal)
+export default connect(mapStateToProps, {
+  openRegisterModal,
+  closeLoginModal,
+  login,
+  handleGoogleLogin,
+})(LoginModal)

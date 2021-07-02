@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const utils = require('utility')
+const { OAuth2Client } = require('google-auth-library')
+const client = new OAuth2Client(process.env.CLIENT_ID)
 
 const User = require('../models').User
 const Cart = require('../models').Cart
@@ -68,6 +70,42 @@ router.post('/login', (req, res) => {
     Cart.findOne({ user: _id }, _cartFilter, (err, cart) => {
       return res.json({ code: 0, user, cart, message: `Welcome, ${name}` })
     })
+  })
+})
+
+router.post('/googleLogin', async (req, res) => {
+  const { tokenId } = req.body
+  const ticket = await client.verifyIdToken({
+    idToken: tokenId,
+    audience: process.env.CLIENT_ID,
+  })
+  const { name } = ticket.getPayload()
+  User.findOne({ tokenId }, (err, doc) => {
+    if (!doc) {
+      const user = new User({
+        tokenId,
+        name,
+        isSeller: false,
+        isAdmin: false,
+      })
+      user.save((err, newUser) => {
+        const cart = new Cart({ user: newUser._id, price: 0, quantity: 0, items: [] })
+        cart.save((err, cart) => {
+          res.cookie('_id', newUser._id)
+          return res.json({
+            code: 0,
+            user: newUser,
+            cart,
+            message: `Welcome, ${newUser.name}`,
+          })
+        })
+      })
+    } else {
+      res.cookie('_id', doc._id)
+      Cart.findOne({ user: doc._id }, _cartFilter, (err, cart) => {
+        return res.json({ code: 0, user: doc, cart, message: `Welcome, ${doc.name}` })
+      })
+    }
   })
 })
 

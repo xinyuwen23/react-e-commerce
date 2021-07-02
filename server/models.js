@@ -7,11 +7,12 @@ mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const userSchema = new Schema(
   {
-    email: { type: String, required: true, unique: true },
+    email: { type: String },
     name: { type: String },
-    password: { type: String, required: true },
+    password: { type: String },
     isSeller: { type: Boolean, default: false },
     isAdmin: { type: Boolean, default: false },
+    tokenId: { type: String },
   },
   { timestamps: true }
 )
