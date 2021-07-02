@@ -8,7 +8,7 @@ const initialState = {
   allItems: {},
   itemList: [],
   sellerItemList: [],
-  searchBar: '',
+  searchText: '',
 
   cart: '',
 

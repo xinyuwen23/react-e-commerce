@@ -1,19 +1,29 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Input } from 'antd'
-import { SearchOutlined } from '@ant-design/icons'
+
+import { setState } from '../../actions'
+import { searchItems } from '../../actions/item'
 
 class SearchBar extends React.Component {
   render() {
-    const { searchBar } = this.props
+    const { searchText, setState, searchItems } = this.props
 
     return (
       <>
-        <Input
-          style={{ width: 500 }}
-          prefix={<SearchOutlined />}
+        <Input.Search
+          style={{ width: 500, marginTop: 40 }}
           size='large'
+          enterButton
           placeholder='Search for products'
+          value={searchText}
+          onChange={e => {
+            setState({ searchText: e.target.value })
+          }}
+          onSearch={() => {
+            searchItems(searchText)
+            setState({ searchText: '' })
+          }}
         />
       </>
     )
@@ -21,7 +31,7 @@ class SearchBar extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  searchBar: state.searchBar,
+  searchText: state.searchText,
 })
 
-export default connect(mapStateToProps)(SearchBar)
+export default connect(mapStateToProps, { setState, searchItems })(SearchBar)

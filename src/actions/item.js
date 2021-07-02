@@ -97,3 +97,7 @@ export const uploadItem = uploadModal => dispatch => {
     })
   }
 }
+
+export const searchItems = searchText => dispatch => {
+  console.log(searchText)
+}
