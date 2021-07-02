@@ -7,7 +7,7 @@ import { searchItems } from '../../actions/item'
 
 class SearchBar extends React.Component {
   render() {
-    const { searchText, setState, searchItems } = this.props
+    const { searchText, allItems, setState, searchItems } = this.props
 
     return (
       <>
@@ -21,7 +21,7 @@ class SearchBar extends React.Component {
             setState({ searchText: e.target.value })
           }}
           onSearch={() => {
-            searchItems(searchText)
+            searchItems(searchText, allItems)
             setState({ searchText: '' })
           }}
         />
@@ -32,6 +32,7 @@ class SearchBar extends React.Component {
 
 const mapStateToProps = state => ({
   searchText: state.searchText,
+  allItems: state.allItems,
 })
 
 export default connect(mapStateToProps, { setState, searchItems })(SearchBar)

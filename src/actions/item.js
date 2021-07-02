@@ -98,6 +98,10 @@ export const uploadItem = uploadModal => dispatch => {
   }
 }
 
-export const searchItems = searchText => dispatch => {
-  console.log(searchText)
+export const searchItems = (searchText, allItems) => dispatch => {
+  let searchResult = allItems.filter(item => {
+    return item.title.toUpperCase().includes(searchText.toUpperCase())
+  })
+  console.log(searchResult)
+  dispatch({ type: 'SEARCH_ITEMS', payload: searchResult })
 }

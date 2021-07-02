@@ -5,10 +5,11 @@ const initialState = {
 
   isUploadModalVisible: false,
   item: {},
-  allItems: {},
+  allItems: [],
   itemList: [],
   sellerItemList: [],
   searchText: '',
+  searchResult: [],
 
   cart: '',
 
@@ -79,6 +80,9 @@ const reducer = (state = initialState, action) => {
 
     case 'CREATE_HELP':
       return { ...state, isHelpModalVisible: false }
+
+    case 'SEARCH_ITEMS':
+      return { ...state, searchResult: action.payload }
 
     default:
       return state
