@@ -12,7 +12,7 @@ class SearchBar extends React.Component {
     return (
       <>
         <Input.Search
-          style={{ width: 500, marginTop: 40 }}
+          style={{ width: 550, marginTop: 30 }}
           size='large'
           enterButton
           placeholder='Search for products'

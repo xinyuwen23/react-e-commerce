@@ -21,7 +21,7 @@ class Home extends React.Component {
     return (
       <div>
         <div id='homeImage'>
-          <div style={{ height: 160, paddingTop: 80 }}>E-COMMERCE APP</div>
+          <div style={{ height: 140, paddingTop: 60 }}>E-COMMERCE APP</div>
           <SearchBar />
         </div>
         <Space style={{ padding: '10px 50px 30px 50px' }} direction='vertical'>
