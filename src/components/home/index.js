@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Space, Card } from 'antd'
 
 import SearchBar from './searchBar'
+import SearchResult from './searchResult'
 
 class Home extends React.Component {
   componentDidMount() {
@@ -10,7 +11,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { history, allItems } = this.props
+    const { history, allItems, searchResult } = this.props
     const categoryList = [
       { title: 'COVID-19', icon: require('../../static/img/covid-19.jpg').default },
       { title: 'Drinks', icon: require('../../static/img/drinks.jpg').default },
@@ -24,9 +25,10 @@ class Home extends React.Component {
           <SearchBar />
         </div>
         <Space style={{ padding: '10px 50px 30px 50px' }} direction='vertical'>
+          {searchResult.length > 0 && <SearchResult />}
           <h2>RECOMMENDATION</h2>
           <Space style={{ width: '100%' }} wrap size='large'>
-            {allItems.length &&
+            {allItems.length > 0 &&
               allItems
                 .sort((i1, i2) => i2.sold - i1.sold)
                 .slice(0, 5)
@@ -65,6 +67,7 @@ class Home extends React.Component {
 
 const mapStateToProps = state => ({
   allItems: state.allItems,
+  searchResult: state.searchResult,
 })
 
 export default connect(mapStateToProps)(Home)
