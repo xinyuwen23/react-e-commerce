@@ -23,11 +23,14 @@ class NavBar extends React.Component {
       { key: 'addressbook', title: 'Address Book' },
     ]
     return (
-      <Menu mode='horizontal' theme='dark'>
-        <Menu.Item key='home' onClick={() => history.push('/')}>
-          <HomeOutlined />
-          Home
-        </Menu.Item>
+      <Menu mode='horizontal' theme='dark' selectedKeys={'null'}>
+        <Menu.SubMenu
+          key='home'
+          icon={<HomeOutlined />}
+          title='Home'
+          onTitleClick={() => history.push('/')}
+        ></Menu.SubMenu>
+
         <Menu.SubMenu
           key='categories'
           icon={<MenuOutlined />}
@@ -48,10 +51,13 @@ class NavBar extends React.Component {
         </Menu.SubMenu>
 
         {!user._id && (
-          <Menu.Item style={{ float: 'right' }} key='login' onClick={() => openLoginModal()}>
-            <LoginOutlined />
-            Login
-          </Menu.Item>
+          <Menu.SubMenu
+            style={{ float: 'right' }}
+            key='login'
+            icon={<LoginOutlined />}
+            title='Login'
+            onTitleClick={() => openLoginModal()}
+          ></Menu.SubMenu>
         )}
         {user._id && (
           <Menu.SubMenu
@@ -82,10 +88,14 @@ class NavBar extends React.Component {
             </Menu.Item>
           </Menu.SubMenu>
         )}
-        <Menu.Item style={{ float: 'right' }} key='cart' onClick={() => history.push('/cart')}>
-          <ShoppingCartOutlined />
-          Cart {cart.quantity > 0 && `(${cart.quantity})`}
-        </Menu.Item>
+
+        <Menu.SubMenu
+          style={{ float: 'right' }}
+          key='cart'
+          icon={<ShoppingCartOutlined />}
+          title={cart.quantity > 0 ? `Cart (${cart.quantity})` : 'Cart'}
+          onTitleClick={() => history.push('/cart')}
+        ></Menu.SubMenu>
       </Menu>
     )
   }
