@@ -80,6 +80,7 @@ router.post('/googleLogin', async (req, res) => {
     audience: process.env.CLIENT_ID,
   })
   const { name } = ticket.getPayload()
+  console.log(JSON.stringify(ticket.getPayload()))
   User.findOne({ tokenId }, (err, doc) => {
     if (!doc) {
       const user = new User({
@@ -89,7 +90,7 @@ router.post('/googleLogin', async (req, res) => {
         isAdmin: false,
       })
       user.save((err, newUser) => {
-        const cart = new Cart({ user: newUser._id, price: 0, quantity: 0, items: [] })
+        const cart = new Cart({ user: newUser, price: 0, quantity: 0, items: [] })
         cart.save((err, cart) => {
           res.cookie('_id', newUser._id)
           return res.json({
