@@ -80,7 +80,11 @@ export const logout = history => dispatch => {
 
 export const handleGoogleLogin = googleData => dispatch => {
   axios.post('auth/googleLogin', { tokenId: googleData.tokenId }).then(res => {
-    dispatch({ type: 'GET_USER', payload: { user: res.data.user, cart: res.data.cart } })
-    message.success(res.data.message)
+    if (res.status === 200 && res.data.code === 0) {
+      dispatch({ type: 'GET_USER', payload: { user: res.data.user, cart: res.data.cart } })
+      message.success(res.data.message)
+    } else {
+      message.error('Error')
+    }
   })
 }

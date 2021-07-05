@@ -79,32 +79,30 @@ router.post('/googleLogin', async (req, res) => {
     idToken: tokenId,
     audience: process.env.CLIENT_ID,
   })
-  const { name } = ticket.getPayload()
-  console.log(JSON.stringify(ticket.getPayload()))
-  User.findOne({ tokenId }, (err, doc) => {
+  const { name, email } = ticket.getPayload()
+
+  User.findOne({ email }, (err, doc) => {
     if (!doc) {
-      const user = new User({
-        tokenId,
-        name,
-        isSeller: false,
-        isAdmin: false,
-      })
-      user.save((err, newUser) => {
-        const cart = new Cart({ user: newUser, price: 0, quantity: 0, items: [] })
+      const user = new User({ email, name })
+      user.save((err, doc) => {
+        const cart = new Cart({ user, price: 0, quantity: 0, items: [] })
         cart.save((err, cart) => {
-          res.cookie('_id', newUser._id)
+          const { email, name, isSeller, _id } = doc
+          const { user, price, quantity, items } = cart
+          res.cookie('_id', _id)
           return res.json({
             code: 0,
-            user: newUser,
-            cart,
-            message: `Welcome, ${newUser.name}`,
+            user: { email, name, isSeller, _id },
+            cart: { user, price, quantity, items },
+            message: `Welcome, ${name}`,
           })
         })
       })
     } else {
-      res.cookie('_id', doc._id)
-      Cart.findOne({ user: doc._id }, _cartFilter, (err, cart) => {
-        return res.json({ code: 0, user: doc, cart, message: `Welcome, ${doc.name}` })
+      const { _id, name } = doc
+      res.cookie('_id', _id)
+      Cart.findOne({ user: _id }, (err, cart) => {
+        return res.json({ code: 0, user: doc, cart, message: `Welcome, ${name}` })
       })
     }
   })

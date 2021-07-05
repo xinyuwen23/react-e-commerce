@@ -55,7 +55,7 @@ class NavBar extends React.Component {
             style={{ float: 'right' }}
             key='login'
             icon={<LoginOutlined />}
-            title='Login'
+            title='Log In'
             onTitleClick={() => openLoginModal()}
           ></Menu.SubMenu>
         )}
@@ -84,7 +84,7 @@ class NavBar extends React.Component {
             ))}
 
             <Menu.Item key='logout' onClick={() => logout(history)}>
-              Logout
+              Log Out
             </Menu.Item>
           </Menu.SubMenu>
         )}

@@ -34,19 +34,18 @@ class LoginModal extends React.Component {
                 style={{ backgroundColor: 'rgb(46, 54, 70)', color: 'rgb(245, 245, 245)' }}
               >
                 <GoogleOutlined />
-                Login with Google
+                Log in with Google
               </Button>
             )}
             key='googleLogin'
             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
             buttonText='Login with Google'
             onSuccess={handleGoogleLogin}
-            onFailure={handleGoogleLogin}
             cookiePolicy={'single_host_origin'}
           />,
 
           <Button key='login' type='primary' onClick={() => login(this.state)}>
-            Login
+            Log in
           </Button>,
         ]}
       >
