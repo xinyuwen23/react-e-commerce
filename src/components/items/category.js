@@ -21,7 +21,7 @@ class Category extends React.Component {
       { path: `/category/${category}`, breadcrumbName: category },
     ]
     return (
-      <div>
+      <>
         <PageHeader breadcrumb={{ routes }} />
         <Space style={{ padding: '10px 50px 30px 50px' }} direction='vertical'>
           <h1>{category.toUpperCase()}</h1>
@@ -40,7 +40,7 @@ class Category extends React.Component {
             ))}
           </Space>
         </Space>
-      </div>
+      </>
     )
   }
 }

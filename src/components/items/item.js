@@ -26,7 +26,7 @@ class Item extends React.Component {
       { path: 'item', breadcrumbName: 'Product Details' },
     ]
     return (
-      <div>
+      <>
         <PageHeader breadcrumb={{ routes }} />
         <Space style={{ padding: '10px 50px 30px 50px' }} direction='vertical'>
           <Row>
@@ -69,7 +69,7 @@ class Item extends React.Component {
             <ReactMarkdown>{item.description}</ReactMarkdown>
           </Space>
         </Space>
-      </div>
+      </>
     )
   }
 }

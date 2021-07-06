@@ -38,7 +38,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <>
         <NavBar />
         <LoginModal />
         <RegisterModal />
@@ -66,7 +66,7 @@ class App extends React.Component {
           </Switch>
         </div>
         <Footer />
-      </div>
+      </>
     )
   }
 }

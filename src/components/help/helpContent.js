@@ -9,7 +9,7 @@ class HelpContent extends React.Component {
   render() {
     const { isHelpContentVisible, help, closeHelpContent, markHelp } = this.props
     return (
-      <div>
+      <>
         {help && (
           <Modal
             title='Help Request'
@@ -35,7 +35,7 @@ class HelpContent extends React.Component {
             </Space>
           </Modal>
         )}
-      </div>
+      </>
     )
   }
 }

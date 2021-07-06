@@ -83,13 +83,13 @@ class AllHelps extends React.Component {
     ]
 
     return (
-      <div>
+      <>
         <PageHeader breadcrumb={{ routes }} />
         <Space style={{ padding: '10px 50px 30px 50px', width: '100%' }} direction='vertical'>
           <h1>REVIEW HELP REQUESTS</h1>
           <Table columns={columns} dataSource={helpList} />
         </Space>
-      </div>
+      </>
     )
   }
 }

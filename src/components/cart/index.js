@@ -27,7 +27,7 @@ class Cart extends React.Component {
         })
 
     return (
-      <div>
+      <>
         <PageHeader breadcrumb={{ routes }} />
         <Space
           style={{ padding: '10px 50px 30px 50px', width: '100%' }}
@@ -105,7 +105,7 @@ class Cart extends React.Component {
             <div>Cart is empty</div>
           )}
         </Space>
-      </div>
+      </>
     )
   }
 }

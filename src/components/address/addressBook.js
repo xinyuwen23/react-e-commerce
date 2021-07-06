@@ -17,7 +17,7 @@ class AddressBook extends React.Component {
       { path: '/addressbook', breadcrumbName: 'Address Book' },
     ]
     return (
-      <div>
+      <>
         <PageHeader breadcrumb={{ routes }} />
         <Space
           style={{ padding: '10px 50px 30px 50px', width: '100%' }}
@@ -46,7 +46,7 @@ class AddressBook extends React.Component {
             + New Address
           </Button>
         </Space>
-      </div>
+      </>
     )
   }
 }

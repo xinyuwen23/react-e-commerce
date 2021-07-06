@@ -88,7 +88,7 @@ class AllItems extends React.Component {
     ]
 
     return (
-      <div>
+      <>
         <PageHeader breadcrumb={{ routes }} />
         {allItems.length && (
           <Space style={{ padding: '10px 50px 30px 50px', width: '100%' }} direction='vertical'>
@@ -99,7 +99,7 @@ class AllItems extends React.Component {
             </Space>
           </Space>
         )}
-      </div>
+      </>
     )
   }
 }

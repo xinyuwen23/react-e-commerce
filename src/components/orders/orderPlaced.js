@@ -9,13 +9,13 @@ class OrderPlaced extends React.Component {
       { path: '/orderplaced', breadcrumbName: 'Order Placed' },
     ]
     return (
-      <div>
+      <>
         <PageHeader breadcrumb={{ routes }} />
         <div id='orderPlaced'>
           <div style={{ fontSize: 36, fontWeight: 'bold', marginTop: 100 }}>THANK YOU!</div>
           <div style={{ fontSize: 24 }}>Your order has been placed</div>
         </div>
-      </div>
+      </>
     )
   }
 }

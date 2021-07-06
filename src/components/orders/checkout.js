@@ -29,7 +29,7 @@ class Checkout extends React.Component {
       lineHeight: '30px',
     }
     return (
-      <div>
+      <>
         <PageHeader breadcrumb={{ routes }} />
         {cart && addressList && (
           <Space style={{ padding: '10px 50px 30px 50px', width: '100%' }} direction='vertical'>
@@ -149,7 +149,7 @@ class Checkout extends React.Component {
             </Button>
           </Space>
         )}
-      </div>
+      </>
     )
   }
 }

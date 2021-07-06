@@ -15,7 +15,7 @@ class CategoryList extends React.Component {
       { title: 'Household', icon: require('../../static/img/household.png').default },
     ]
     return (
-      <div>
+      <>
         <PageHeader breadcrumb={{ routes }} />
         <Space style={{ padding: '10px 50px 30px 50px' }} direction='vertical'>
           <h1>CATEGORY</h1>
@@ -33,7 +33,7 @@ class CategoryList extends React.Component {
             ))}
           </Space>
         </Space>
-      </div>
+      </>
     )
   }
 }

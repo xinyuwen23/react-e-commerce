@@ -19,7 +19,7 @@ class Orders extends React.Component {
       { path: '/orders', breadcrumbName: 'Order History' },
     ]
     return (
-      <div>
+      <>
         <PageHeader breadcrumb={{ routes }} />
         <Space
           style={{ padding: '10px 50px 30px 50px', width: '100%' }}
@@ -77,7 +77,7 @@ class Orders extends React.Component {
             </Space>
           )}
         </Space>
-      </div>
+      </>
     )
   }
 }

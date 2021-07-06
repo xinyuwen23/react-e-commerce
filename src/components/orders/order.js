@@ -20,7 +20,7 @@ class Order extends React.Component {
       { path: 'order', breadcrumbName: 'Order Summary' },
     ]
     return (
-      <div>
+      <>
         <PageHeader breadcrumb={{ routes }} />
         {order && (
           <Space style={{ padding: '10px 50px 30px 50px', width: '100%' }} direction='vertical'>
@@ -70,7 +70,7 @@ class Order extends React.Component {
             )}
           </Space>
         )}
-      </div>
+      </>
     )
   }
 }

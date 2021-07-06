@@ -19,7 +19,7 @@ class Home extends React.Component {
     ]
 
     return (
-      <div>
+      <>
         <div id='homeImage'>
           <div style={{ height: 140, paddingTop: 60 }}>E-COMMERCE APP</div>
           <SearchBar />
@@ -60,7 +60,7 @@ class Home extends React.Component {
             ))}
           </Space>
         </Space>
-      </div>
+      </>
     )
   }
 }

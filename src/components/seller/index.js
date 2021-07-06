@@ -91,7 +91,7 @@ class Seller extends React.Component {
     ]
 
     return (
-      <div>
+      <>
         <PageHeader breadcrumb={{ routes }} />
         <Space style={{ padding: '10px 50px 30px 50px', width: '100%' }} direction='vertical'>
           <h1>SELLER PAGE</h1>
@@ -110,7 +110,7 @@ class Seller extends React.Component {
             <Table columns={columns} dataSource={sellerItemList} />
           </Space>
         </Space>
-      </div>
+      </>
     )
   }
 }
