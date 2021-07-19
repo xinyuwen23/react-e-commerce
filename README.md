@@ -1,20 +1,27 @@
 # E-Commerce App
 
-An application that allows users to buy and sell products, built with `React`, `Redux`, `Node.js`, `Express.js`, and `MongoDB`.
+An e-commerce application that allows users to buy and sell products. Built with `React`, `Redux`, `Node.js`, `Express.js` and `MongoDB`.
 
 ## Deployment
 
 [https://xinyuwen-react-e-commerce.herokuapp.com](https://xinyuwen-react-e-commerce.herokuapp.com)
 
-## Project Screenshots
+## Screenshot
 
 ![screen shot](https://github.com/xinyuwen23/react-e-commerce/blob/master/screenshots/1.png?raw=true)
 
-![screen shot](https://github.com/xinyuwen23/react-e-commerce/blob/master/screenshots/2.png?raw=true)
+## Features
 
-![screen shot](https://github.com/xinyuwen23/react-e-commerce/blob/master/screenshots/3.png?raw=true)
-
-![screen shot](https://github.com/xinyuwen23/react-e-commerce/blob/master/screenshots/4.png?raw=true)
+- Sign in with Email or Google (OAuth)
+- Search for products
+- Categories
+- Product details with images and markdown-styled description
+- Shopping cart
+- Edit addresses
+- Checkout
+- Order history
+- Help requests with text and images
+- Upload products to sell as a seller
 
 ## Installation and Setup Instructions
 
