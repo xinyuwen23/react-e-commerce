@@ -72,11 +72,6 @@ Open your browser and visit `http://localhost:3000/` to explore the app.
 Feel free to submit issues or pull requests to improve this project!
 ```
 
-## License
-```md
-This project is licensed under the MIT License.
-```
-
 ---
 **Author:** [Xinyu Wen](https://github.com/xinyuwen23)
 
