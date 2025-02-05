@@ -13,7 +13,7 @@ This is a fully functional e-commerce web application built using React. It prov
 - Admin dashboard for product and order management
 
 ## Demo
-![Demo](demo.png) *(Replace with actual image path if needed)*
+![Demo](screenshots/1.png)
 
 ## Installation
 To run this project locally, follow these steps:
@@ -79,3 +79,4 @@ This project is licensed under the MIT License.
 
 ---
 **Author:** [Xinyu Wen](https://github.com/xinyuwen23)
+
