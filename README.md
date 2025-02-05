@@ -1,48 +1,81 @@
-# E-Commerce App
+# React E-Commerce
 
-An e-commerce application that allows users to buy and sell products. Built with `React`, `Redux`, `Node`, `Express` and `MongoDB`.
-
-## Deployment
-
-[https://xinyuwen-react-e-commerce.herokuapp.com](https://xinyuwen-react-e-commerce.herokuapp.com)
-
-## Screenshot
-
-![screen shot](https://github.com/xinyuwen23/react-e-commerce/blob/master/screenshots/1.png?raw=true)
+## Overview
+This is a fully functional e-commerce web application built using React. It provides users with a seamless shopping experience, including product browsing, adding items to the cart, and completing purchases.
 
 ## Features
+- Product listing with search and filter functionality
+- Shopping cart with item quantity adjustment
+- User authentication and login/logout
+- Order checkout process with order summary
+- Responsive design for different screen sizes
+- Wishlist functionality
+- Admin dashboard for product and order management
 
-- Sign in with Email or Google (OAuth)
-- Search for products
-- Categories
-- Product details with images and markdown-styled description
-- Shopping cart
-- Edit addresses
-- Checkout
-- Order history
-- Help requests with text and images
-- Upload products to sell as a seller
+## Demo
+![Demo](demo.png) *(Replace with actual image path if needed)*
 
-## Installation and Setup Instructions
+## Installation
+To run this project locally, follow these steps:
 
-Clone down this repository. You will need `node` and `npm` installed globally on your machine. You will also need `mongodb` running locally.
+### Prerequisites
+Make sure you have the following installed on your system:
+- [Node.js](https://nodejs.org/) (LTS version recommended)
 
-Installation:
+### Steps
+```sh
+# Clone the repository
+git clone https://github.com/xinyuwen23/react-e-commerce.git
 
-`npm install`
+# Navigate into the project directory
+cd react-e-commerce
 
-To Start App:
+# Install dependencies
+npm install
 
-`npm run app`
+# Start the development server
+npm start
+```
 
-To Start Server:
+Open your browser and visit `http://localhost:3000/` to explore the app.
 
-`npm run server`
+## Usage
+```md
+- Browse the product catalog.
+- Search and filter products.
+- Add products to your shopping cart or wishlist.
+- Adjust item quantities before checkout.
+- Proceed to checkout and place an order.
+- Log in to access personalized features.
+- Admins can manage products and orders.
+```
 
-To Start Client:
+## Technologies Used
+```md
+- React
+- Redux (for state management)
+- React Router (for navigation)
+- Styled Components / CSS
+- Firebase / Express (if applicable for backend services)
+```
 
-`npm run client`
+## Future Improvements
+```md
+- Implement payment integration
+- Enhance UI/UX with better animations and design
+- Add user reviews and ratings
+- Optimize performance for larger product catalogs
+```
 
-To Visit App:
+## Contributing
+```md
+Feel free to submit issues or pull requests to improve this project!
+```
 
-`localhost:3000`
+## License
+```md
+This project is licensed under the MIT License.
+```
+
+---
+**Author:** [Xinyu Wen](https://github.com/xinyuwen23)
